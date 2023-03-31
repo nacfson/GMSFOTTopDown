@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EnemyTracker : MonoBehaviour
 {
-    [SerializeField]
-    private bool tracker = true;
-    public LayerMask player;
+
+    public Transform player;
+    public float speed = 5f;
+    public float range = 5f;
 
     void Update()
     {
-        transform.Translate(-0.05f,0,0);
-        tracker = Physics2D.OverlapCircle(transform.position, 5f, player);
-
-        if(tracker == true)
+        float distance = Vector2.Distance(transform.position, player.position);;
+        if (distance <= range)
         {
-            transform.Translate(PlayerController.Instance.PlayerPos);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
 }
+
