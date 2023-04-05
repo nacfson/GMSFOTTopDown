@@ -5,10 +5,19 @@ using UnityEngine;
 public class EnemyTracker : MonoBehaviour
 {
 
+    [SerializeField]
+    private EnemySO enemySO;
     public Transform player;
-    public float speed = 5f;
+    public float speed;
     public float range = 5f;
     public bool inChase = false;
+
+    private void Start()
+    {
+
+
+        speed = enemySO.speed;
+    }
 
     void Update()
     {
