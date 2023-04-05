@@ -10,8 +10,15 @@ public class EnemyTracker : MonoBehaviour
     public Transform player;
     public float speed;
     public float range = 5f;
+    public float rotate;
     public bool inChase = false;
+    SpriteRenderer sprite;
 
+
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
     private void Start()
     {
 
@@ -21,8 +28,8 @@ public class EnemyTracker : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.position);;
-        if (distance <= range)
+        enemySO.follow = Vector2.Distance(transform.position, player.position);;
+        if (enemySO.follow <= range)
         {
             inChase = true;
         }
@@ -35,6 +42,14 @@ public class EnemyTracker : MonoBehaviour
     public void Chase()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        if(transform.position.x - player.position.x < 0)
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
     }
 }
 
