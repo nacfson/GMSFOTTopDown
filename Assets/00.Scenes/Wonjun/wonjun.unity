@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532238505}
   m_Layer: 0
-  m_Name: RAttackTrm
+  m_Name: RAttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,8 +316,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 960094933
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 533615088, guid: d78257cb59bbdcd4784b9a1001bc2a48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -338,7 +338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616926347}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21951221, y: 1.8780488, z: 0}
+  m_LocalPosition: {x: 0.04, y: 2.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -362,7 +362,7 @@ MonoBehaviour:
   a: {fileID: 0}
   BossHand: BossRightHand
   _trm: {fileID: 532238505}
-  _handAttack: {fileID: 0}
+  _handAttack: {fileID: 714011334968440341, guid: cc26643c50066ac4ea367f06a7bca56a, type: 3}
   attackcool: 10
 --- !u!1 &1370870744
 GameObject:
@@ -396,7 +396,7 @@ MonoBehaviour:
   pools:
   - key: BossRightHand
     poolCount: 5
-    obj: {fileID: 0}
+    obj: {fileID: 714011334968440341, guid: cc26643c50066ac4ea367f06a7bca56a, type: 3}
 --- !u!4 &1370870746
 Transform:
   m_ObjectHideFlags: 0
