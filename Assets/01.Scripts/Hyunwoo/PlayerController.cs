@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance;
-    public Vector2 PlayerPos;
-
-    void Update()
+    public float speed = 6f;
+    private void Update()
     {
-        PlayerPos = transform.position;
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        transform.position += new Vector3(h, v, 0).normalized * Time.deltaTime * speed;
     }
 }
