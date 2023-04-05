@@ -11,10 +11,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Top
+  - Agent
+  - Impact
+  - Ground
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Top
+    uniqueID: 1237036195
+    locked: 0
+  - name: Impact
+    uniqueID: 960094933
+    locked: 0
+  - name: Agent
+    uniqueID: 3639524087
+    locked: 0
+  - name: Ground
+    uniqueID: 840252405
     locked: 0
