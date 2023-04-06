@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532238504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.23, y: -4.93, z: 0}
+  m_LocalPosition: {x: -5, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,6 +343,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 532238505}
+  - {fileID: 1711876242}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360,10 +361,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bossHp: 500
   a: {fileID: 0}
-  BossHand: BossRightHand
-  _trm: {fileID: 532238505}
-  _handAttack: {fileID: 714011334968440341, guid: cc26643c50066ac4ea367f06a7bca56a, type: 3}
-  attackcool: 10
+  b: {fileID: 0}
+  rBossHand: BossRightHand
+  lBossHand: BossLeftHand
+  _rtrm: {fileID: 532238505}
+  _lTrm: {fileID: 1711876242}
+  _rhandAttack: {fileID: 714011334968440341, guid: cc26643c50066ac4ea367f06a7bca56a, type: 3}
+  _lhandAttack: {fileID: 714011334968440341, guid: b78a8208ba6ab924a870114e84baed6b, type: 3}
+  attackcool: 1
 --- !u!1 &1370870744
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +400,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - key: BossRightHand
-    poolCount: 5
+    poolCount: 10
     obj: {fileID: 714011334968440341, guid: cc26643c50066ac4ea367f06a7bca56a, type: 3}
+  - key: BossLeftHand
+    poolCount: 10
+    obj: {fileID: 714011334968440341, guid: b78a8208ba6ab924a870114e84baed6b, type: 3}
 --- !u!4 &1370870746
 Transform:
   m_ObjectHideFlags: 0
@@ -410,5 +418,36 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1711876241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711876242}
+  m_Layer: 0
+  m_Name: LAttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1711876242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711876241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 616926350}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

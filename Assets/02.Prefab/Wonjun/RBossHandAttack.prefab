@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 923225631746831564}
   - component: {fileID: 6847212711160983429}
   - component: {fileID: 3841635331176272072}
-  - component: {fileID: 4063785515242311690}
+  - component: {fileID: 4639474958078011676}
   m_Layer: 0
-  m_Name: BossHandAttack
+  m_Name: RBossHandAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1639739093, guid: 831956da30329aa4fb4de24340626d8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 6, y: 6}
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4063785515242311690
+--- !u!114 &4639474958078011676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
