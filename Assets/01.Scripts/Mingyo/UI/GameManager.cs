@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager _instance;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
         }
-        else if (_instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }

@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.UI;
+using DG.Tweening.Core.Easing;
+using DG.Tweening;
 
 public class UISetting : MonoBehaviour
 {
+
     [SerializeField]
-    GameObject _settingManager;
-    public bool _settingManagerOn = true;
+    RectTransform _settingManager;
+    public bool _settingManagerOn = false;
 
     [SerializeField]
     Button _soundSettingButton;
@@ -33,17 +35,15 @@ public class UISetting : MonoBehaviour
 
     public void SettingPanelOnOff()
     {
-        //_settingManager.SetActive(_settingManagerOnOff);
-        if(_settingManagerOn)
+        if (_settingManagerOn)
         {
-            _settingManager.transform.DOMoveY(585, 1);
+            
         }
         else
         {
-            _settingManager.transform.DOMoveY(-200, 1);
+            
         }
-        _settingManagerOn = _settingManagerOn == true ? false : true;
-        GameManager._instance.GameStop();
+
     }
 
     public void SoundPanelOnOff()
@@ -58,6 +58,6 @@ public class UISetting : MonoBehaviour
 
     public void LoadScene()
     {
-        GameManager._instance.MoveScene("Main");
+        GameManager.Instance.MoveScene("Main");
     }
 }
