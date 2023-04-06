@@ -8,14 +8,11 @@ public class EnemyTracker : MonoBehaviour
     [SerializeField]
     private EnemySO enemySO;
     public Transform player;
-    public Mesh mesh;
     public LayerMask Player;
     public Vector2 size;
     public Vector2 playerPos;
-    public Quaternion angle;
     public float speed;
-    public float range = 3f;
-    public float rotate;
+    public float range;
     public float attackDelay = 1f;
     public bool inChase = false;
     public bool onAttack = false;
@@ -32,17 +29,18 @@ public class EnemyTracker : MonoBehaviour
     private void Start()
     {
         speed = enemySO.speed;
+        range = enemySO.follow;
     }
 
     void Update()
     {
         isAttack = Physics2D.OverlapCircle(transform.position, 1f);
-        enemySO.follow = Vector2.Distance(transform.position, player.position);
-        if (enemySO.follow <= range)
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance <= enemySO.follow)
         {
             inChase = true;
         }
-        else if (enemySO.follow > range)
+        else if (distance > enemySO.follow)
         {
             animator.SetBool("Run", false);
             inChase = false;
@@ -51,7 +49,7 @@ public class EnemyTracker : MonoBehaviour
         {
             Chase();
         }
-        if (enemySO.follow <= 1.5f)
+        if (distance <= 1.5f)
         {
             StartAttack();
         }
@@ -63,17 +61,17 @@ public class EnemyTracker : MonoBehaviour
 
         if (onAttack == false)
         {
-           transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }
-        if(transform.position.x - player.position.x < 0)
-        {
-            sprite.flipX = false;
-            animator.SetBool("Run", true);
-        }
-        else if(transform.position.x - player.position.x >= 0)
-        {
-            sprite.flipX = true;
-            animator.SetBool("Run", true);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            if(transform.position.x - player.position.x < 0)
+            {
+                sprite.flipX = false;
+                animator.SetBool("Run", true);
+            }
+            else if(transform.position.x - player.position.x >= 0)
+            {
+                sprite.flipX = true;
+                animator.SetBool("Run", true);
+            }
         }
         
     }
@@ -86,7 +84,7 @@ public class EnemyTracker : MonoBehaviour
     public void StopAttack()
     {
         onAttack = true;
-        Invoke("ReturnRun", 1.2f);
+        Invoke("ReturnRun", 0.8f);
         
     }
     public void ReturnRun()
@@ -106,7 +104,7 @@ public class EnemyTracker : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1f);
+        Gizmos.DrawWireSphere(transform.position, 1.5f);
     }
 }
 
