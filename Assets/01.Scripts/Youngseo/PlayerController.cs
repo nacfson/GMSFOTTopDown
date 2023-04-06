@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    float speed = 5f;
-    bool Form = false;
+    private Camera cam;
+    float speed;
     public float xLimit;
     public float yLimit;
+    public PlayerSO _playerSO;
 
+    private void Awake()
+    {
+        cam = Camera.main;
+        speed = _playerSO.speed;
+    }
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Transformation();
-        }
+        PlayerRotate();
     }
 
     private void LateUpdate()
@@ -28,17 +30,12 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector2(x, y);
     }
 
-    private void Transformation()
+    private void PlayerRotate()
     {
-        if (!Form)
-        {
-            GetComponent<SpriteRenderer>().color = Color.red;
-            Form = true;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
-            Form = false;
-        }
+        float x = cam.ScreenToWorldPoint(Input.mousePosition).x;
+        float y = cam.ScreenToWorldPoint(Input.mousePosition).y;
+        float z = Mathf.Atan2(y - transform.position.y, x - transform.position.x) * Mathf.Rad2Deg;
+        if (transform.localScale.z < 0) transform.localScale = transform.localScale * -1;
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, z);
     }
 }
