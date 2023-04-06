@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6847212711160983429}
   - component: {fileID: 3841635331176272072}
   - component: {fileID: 4639474958078011676}
+  - component: {fileID: 7087553819888575670}
+  - component: {fileID: 7291449229614774653}
   m_Layer: 0
   m_Name: RBossHandAttack
   m_TagString: Untagged
@@ -119,3 +121,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf0cbd62b68a7747a29b3d71ab2bd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a:
+    serializedVersion: 2
+    m_Bits: 8
+  dir: {x: 4, y: 4, z: 0}
+--- !u!60 &7087553819888575670
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714011334968440341}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 6}
+    newSize: {x: 6, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.45027262, y: 2.6904376}
+      - {x: -1.727488, y: 1.0959032}
+      - {x: -0.7221, y: -2.2019148}
+      - {x: 1.003521, y: -2.3989089}
+      - {x: 1.5777338, y: -0.8376955}
+      - {x: 1.0239366, y: 0.5049207}
+--- !u!50 &7291449229614774653
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714011334968440341}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
