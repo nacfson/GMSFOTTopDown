@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Camera cam;
-    float speed = 5f;
+    float speed;
     public float xLimit;
     public float yLimit;
+    public PlayerSO _playerSO;
 
     private void Awake()
     {
         cam = Camera.main;
+        speed = _playerSO.speed;
     }
     void Update()
     {

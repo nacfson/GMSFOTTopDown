@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject BulletPrefab;
-    public float delayTime = 0.1f;
+    public float shootDelay;
+    public PlayerSO _playerSO;
 
     private void Start()
     {
         StartCoroutine(ShootBullet());
+        shootDelay = _playerSO.shootDelay;
     }
 
     IEnumerator ShootBullet()
@@ -20,7 +22,7 @@ public class PlayerShoot : MonoBehaviour
             {
                 GameObject obj = Instantiate(BulletPrefab, transform.position, transform.rotation);
                 obj.transform.SetParent(null);
-                yield return new WaitForSeconds(delayTime);
+                yield return new WaitForSeconds(shootDelay);
             }
             yield return 0;
         }

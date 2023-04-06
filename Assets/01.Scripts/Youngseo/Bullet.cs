@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed;
+    float speed;
+    PlayerLevelUp playerExp;
+    public PlayerSO _playerSO;
+
+    private void Awake()
+    {
+        playerExp = FindObjectOfType<PlayerLevelUp>();
+        speed = _playerSO.bulletSpeed;
+    }
 
     void Update()
     {
@@ -20,9 +28,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            playerExp.AddExp();
             Destroy(collision.gameObject);
             Destroy(gameObject);
-
         }
     }
 }

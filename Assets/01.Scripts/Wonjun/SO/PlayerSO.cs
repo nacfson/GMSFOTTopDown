@@ -10,5 +10,5 @@ public class PlayerSO : ScriptableObject
     public float damage;
     public float reload;
     public float bulletSpeed;
-    public float bulletDelay;
+    public float shootDelay;
 }
