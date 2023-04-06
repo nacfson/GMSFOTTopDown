@@ -23,7 +23,7 @@ public class BossLeftAttack : MonoBehaviour
     }
     public void BossLeftpool()
     {
-        if (hit.collider.CompareTag("Player")){
+        if (hit.collider.IsTouchingLayers(a)){
             Debug.Log("1´Ù¾Æ¹ö·Ç!");
         }
         PoolList.instance.Push(boss.b);

@@ -24,7 +24,7 @@ public class BossRightAttack : MonoBehaviour
     }
     public void BossRightpool()
     {
-        if (hit.collider.CompareTag("Player"))
+        if (hit.collider.IsTouchingLayers(a))
         {
             Debug.Log("´Ù¾Æ¹ö·Ç!");
         }
