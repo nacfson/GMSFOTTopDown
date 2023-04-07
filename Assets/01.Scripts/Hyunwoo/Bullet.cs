@@ -16,20 +16,20 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
-        transform.SetParent(null);
-        way = player.position;
+        way = player.position - transform.position;
+        way = way.normalized;
     }
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position , new Vector2(way.x,way.y) , speed * Time.deltaTime);
+        transform.Translate(way * speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        Debug.Log("ASDASD");
+        if(collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            testplayercontroller.hp--;
         }
     }
 }

@@ -8,6 +8,7 @@ public class EnemyFarAttacker : EnemyParent
     protected override void Awake()
     {
         base.Awake();
+        range = 4.5f;
     }
 
     protected override void Start()
@@ -19,13 +20,16 @@ public class EnemyFarAttacker : EnemyParent
     protected override void Update()
     {
         float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= enemySO.follow)
+        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        if (distance <= range)
         {
             inChase = true;
+            speed = 0f;
         }
-        else if (distance > enemySO.follow)
+        else if (distance > range)
         {
-            inChase = false;
+            inChase = false; 
+            speed = 2f;
         }
         if (inChase == true)
         {
@@ -50,7 +54,6 @@ public class EnemyFarAttacker : EnemyParent
     {
         if (onAttack == false)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             if (transform.position.x - player.position.x < 0)
             {
                 sprite.flipX = false;
@@ -66,7 +69,7 @@ public class EnemyFarAttacker : EnemyParent
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 6f);
+        Gizmos.DrawWireSphere(transform.position, 3.5f);
     }
 
     IEnumerator StartAttack()
@@ -74,7 +77,7 @@ public class EnemyFarAttacker : EnemyParent
         while (true)
         {
             float distance = Vector2.Distance(transform.position, player.position);
-            if (distance <= 6f)
+            if (distance <= 3.5f)
             {
                 GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 obj.transform.SetParent(null);
