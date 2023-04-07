@@ -9,4 +9,5 @@ public class EnemySO : ScriptableObject
     public float speed;
     public float attck;
     public float follow;
+    public float hp;
 }

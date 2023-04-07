@@ -2,39 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTracker : MonoBehaviour
+public class EnemyTracker : EnemyParent
 {
-
-    [SerializeField]
-    private EnemySO enemySO;
-    public Transform player;
-    public LayerMask Player;
-    public Vector2 size;
-    public Vector2 playerPos;
-    public float speed;
-    public float range;
-    public float attackDelay = 1f;
-    public bool inChase = false;
-    public bool onAttack = false;
-    public bool isAttack = true;
-    SpriteRenderer sprite;
-    Animator animator;
-
-
-    private void Awake()
+    protected override void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-        speed = enemySO.speed;
-        range = enemySO.follow;
+        base.Awake();
     }
 
-    void Update()
+    protected override void Start()
     {
-        isAttack = Physics2D.OverlapCircle(transform.position, 1f);
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        isAttack = Physics2D.OverlapCircle(transform.position, 1f, Player);
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= enemySO.follow)
         {
@@ -53,12 +35,12 @@ public class EnemyTracker : MonoBehaviour
         {
             StartAttack();
         }
+        
+
     }
 
     public void Chase()
     {
-        
-
         if (onAttack == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -97,8 +79,13 @@ public class EnemyTracker : MonoBehaviour
     {
         if (isAttack == true)
         {
-            Debug.Log("°ø°ÝÁß");
+            testplayercontroller.Damage();
         }
+    }
+    public void Dead()
+    {
+        onAttack = false;
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
