@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     public Transform player;
     public float speed = 3f;
     public Vector2 way;
+    public bool inChase = false;
+    public bool isAttack = true;
+    public bool getKey = true;
     TestPlayerController testplayercontroller;
 
     private void Awake()
@@ -30,6 +33,7 @@ public class Bullet : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            testplayercontroller.Damage();
         }
     }
 }

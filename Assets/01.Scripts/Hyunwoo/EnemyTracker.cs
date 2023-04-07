@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyTracker : EnemyParent
 {
+    public LayerMask Player;
     protected override void Awake()
     {
         base.Awake();
@@ -16,7 +17,8 @@ public class EnemyTracker : EnemyParent
 
     protected override void Update()
     {
-        isAttack = Physics2D.OverlapCircle(transform.position, 1f, Player);
+        //Collider2D isAttack = Physics2D.OverlapCircle(transform.position, 2f, Player);
+
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= enemySO.follow)
         {
@@ -27,7 +29,7 @@ public class EnemyTracker : EnemyParent
             animator.SetBool("Run", false);
             inChase = false;
         }
-        if(inChase == true)
+        if (inChase == true)
         {
             Chase();
         }
@@ -35,8 +37,23 @@ public class EnemyTracker : EnemyParent
         {
             StartAttack();
         }
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (getKey == true)
+            {
+                enemySO.hp--;
+                if (enemySO.hp <= 0)
+                {
+                    animator.SetTrigger("Dead");
+                    getKey = false;
+                }
+            }
+        }
 
+    }
+    private void FixedUpdate()
+    {
+        isAttack = Physics2D.OverlapCircle(transform.position, 2f, Player);
     }
 
     public void Chase()
@@ -44,30 +61,30 @@ public class EnemyTracker : EnemyParent
         if (onAttack == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-            if(transform.position.x - player.position.x < 0)
+            if (transform.position.x - player.position.x < 0)
             {
                 sprite.flipX = false;
                 animator.SetBool("Run", true);
             }
-            else if(transform.position.x - player.position.x >= 0)
+            else if (transform.position.x - player.position.x >= 0)
             {
                 sprite.flipX = true;
                 animator.SetBool("Run", true);
             }
         }
-        
+
     }
     public void StartAttack()
     {
         animator.SetBool("Attack", true);
-        
+
     }
-    
+
     public void StopAttack()
     {
         onAttack = true;
         Invoke("ReturnRun", 0.8f);
-        
+
     }
     public void ReturnRun()
     {
@@ -77,6 +94,7 @@ public class EnemyTracker : EnemyParent
     }
     public void Hit()
     {
+        Debug.Log("Ad");
         if (isAttack == true)
         {
             testplayercontroller.Damage();
@@ -92,6 +110,8 @@ public class EnemyTracker : EnemyParent
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 1.5f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 2f);
     }
 }
 

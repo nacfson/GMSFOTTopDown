@@ -7,7 +7,7 @@ public abstract class EnemyParent : MonoBehaviour
     [SerializeField]
     protected EnemySO enemySO;
     protected Transform player;
-    protected LayerMask Player;
+    
     protected Vector2 size;
     protected Vector2 playerPos;
     protected float hp;
@@ -17,10 +17,11 @@ public abstract class EnemyParent : MonoBehaviour
     protected SpriteRenderer sprite;
     protected Animator animator;
     protected TestPlayerController testplayercontroller;
-    protected bool inChase = false;
     protected bool onAttack = false;
+    protected bool inChase = false;
     protected bool isAttack = true;
     protected bool getKey = true;
+
 
     protected virtual void Awake()
     {
@@ -38,17 +39,6 @@ public abstract class EnemyParent : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (getKey == true)
-            {
-                enemySO.hp--;
-                if (enemySO.hp <= 0)
-                {
-                    animator.SetTrigger("Dead");
-                    getKey = false;
-                }
-            }
-        }
+        
     }
 }

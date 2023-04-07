@@ -10,10 +10,6 @@ public class TestPlayerController : MonoBehaviour
     public float yLimit;
     public float hp = 3f;
 
-    private void Awake()
-    {
-    }
-
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");

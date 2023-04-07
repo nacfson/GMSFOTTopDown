@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyFarAttacker : EnemyParent
 {
     public GameObject bulletPrefab;
+    public LayerMask Player;
     protected override void Awake()
     {
         base.Awake();
@@ -35,7 +36,6 @@ public class EnemyFarAttacker : EnemyParent
         {
             Chase();
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (getKey == true)
@@ -43,8 +43,8 @@ public class EnemyFarAttacker : EnemyParent
                 enemySO.hp--;
                 if (enemySO.hp <= 0)
                 {
+                    animator.SetTrigger("Dead");
                     getKey = false;
-                    Destroy(gameObject);
                 }
             }
         }
