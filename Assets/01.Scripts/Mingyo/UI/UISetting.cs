@@ -25,6 +25,13 @@ public class UISetting : MonoBehaviour
     [SerializeField]
     Button _gotoMainButton;
 
+    Animator _animator;
+
+    private void Awake()
+    {
+        _animator = transform.GetComponentInChildren<Animator>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,15 +42,15 @@ public class UISetting : MonoBehaviour
 
     public void SettingPanelOnOff()
     {
-        if (_settingManagerOn)
+        if (!_settingManagerOn)
         {
-            
+            _animator.SetTrigger("SettingManagerOn");
         }
         else
         {
-            
+            _animator.SetTrigger("SettingManagerOff");
         }
-
+        _settingManagerOn = _settingManagerOn == true ? false: true;
     }
 
     public void SoundPanelOnOff()
@@ -60,4 +67,11 @@ public class UISetting : MonoBehaviour
     {
         GameManager.Instance.MoveScene("Main");
     }
+
+    public void GameTimeControll()
+    {
+        GameManager.Instance.GameTimeControll();
+        Debug.Log(Time.deltaTime);
+    }
+
 }

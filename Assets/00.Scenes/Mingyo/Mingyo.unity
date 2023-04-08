@@ -751,7 +751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1125}
+  m_AnchoredPosition: {x: 0, y: 1101}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &956782225
@@ -826,6 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975222525}
   - component: {fileID: 975222526}
+  - component: {fileID: 975222527}
   m_Layer: 0
   m_Name: SettingManager
   m_TagString: Untagged
@@ -841,7 +842,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975222524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -287, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -861,14 +862,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb909b09fc15a549b8e06baea603ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingamePos: {fileID: 1473041015}
-  outgamePos: {fileID: 461734139}
   _settingManager: {fileID: 956782224}
   _settingManagerOn: 0
   _soundSettingButton: {fileID: 0}
   _resolutionSettingButton: {fileID: 0}
   _reStartButton: {fileID: 0}
   _gotoMainButton: {fileID: 0}
+--- !u!95 &975222527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975222524}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59c4b4674b260754b9b3927a747511c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1166660189
 GameObject:
   m_ObjectHideFlags: 0

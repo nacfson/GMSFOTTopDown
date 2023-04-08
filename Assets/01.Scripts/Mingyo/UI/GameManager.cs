@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void GameStop()
+    public void GameTimeControll()
     {
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }
