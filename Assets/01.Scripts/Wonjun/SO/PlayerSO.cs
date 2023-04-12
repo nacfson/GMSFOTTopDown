@@ -7,7 +7,8 @@ using UnityEngine;
 public class PlayerSO : ScriptableObject
 {
     public float speed;
-    public float attck;
+    public float damage;
     public float reload;
     public float bulletSpeed;
+    public float shootDelay;
 }

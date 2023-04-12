@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1237036195
+    locked: 0
+  - name: Agent
+    uniqueID: 960094933
+    locked: 0
+  - name: Impact
+    uniqueID: 3639524087
+    locked: 0
+  - name: Top
+    uniqueID: 840252405
+    locked: 0
+  - name: Player
+    uniqueID: 1952457389
+    locked: 0
+  - name: Gun
+    uniqueID: 2963463945
     locked: 0
