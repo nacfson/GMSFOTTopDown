@@ -54,3 +54,9 @@ TagManager:
   - name: Top
     uniqueID: 840252405
     locked: 0
+  - name: Player
+    uniqueID: 1952457389
+    locked: 0
+  - name: Gun
+    uniqueID: 2963463945
+    locked: 0

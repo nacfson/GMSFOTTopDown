@@ -9,11 +9,14 @@ public class PlayerController : MonoBehaviour
     public float xLimit;
     public float yLimit;
     public PlayerSO _playerSO;
+    public GunRotate gunRotate;
 
     private void Awake()
     {
         cam = Camera.main;
         speed = _playerSO.speed;
+        gunRotate = FindObjectOfType<GunRotate>();
+
     }
     void Update()
     {
@@ -33,9 +36,16 @@ public class PlayerController : MonoBehaviour
     private void PlayerRotate()
     {
         float x = cam.ScreenToWorldPoint(Input.mousePosition).x;
-        float y = cam.ScreenToWorldPoint(Input.mousePosition).y;
-        float z = Mathf.Atan2(y - transform.position.y, x - transform.position.x) * Mathf.Rad2Deg;
-        if (transform.localScale.z < 0) transform.localScale = transform.localScale * -1;
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, z);
+
+        if (x < transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            gunRotate.Flipreverse();
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            gunRotate.Flip();
+        }
     }
 }
