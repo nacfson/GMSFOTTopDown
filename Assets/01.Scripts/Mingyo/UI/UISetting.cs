@@ -8,22 +8,28 @@ using DG.Tweening;
 
 public class UISetting : MonoBehaviour
 {
+    [SerializeField]
+    Transform startPos;
+    [SerializeField]
+    Transform endPos;
+
 
     [SerializeField]
-    RectTransform _settingManager;
-    public bool _settingManagerOn = false;
+    GameObject _settingManager;
+    private bool settingManagerOn = false;
 
     [SerializeField]
-    Button _soundSettingButton;
+    Image _soundSetting;
+    public bool soundSettingOn = false;
 
     [SerializeField]
-    Button _resolutionSettingButton;
+    GameObject _resolutionSetting;
 
     [SerializeField]
-    Button _reStartButton;
+    GameObject _reStartSetting;
 
     [SerializeField]
-    Button _gotoMainButton;
+    GameObject _gotoMainSetting;
 
     Animator _animator;
 
@@ -38,11 +44,12 @@ public class UISetting : MonoBehaviour
         {
             SettingPanelOnOff();
         }
+        Time.timeScale = Time.unscaledDeltaTime;
     }
 
     public void SettingPanelOnOff()
     {
-        if (!_settingManagerOn)
+        if (!settingManagerOn)
         {
             _animator.SetTrigger("SettingManagerOn");
         }
@@ -50,12 +57,30 @@ public class UISetting : MonoBehaviour
         {
             _animator.SetTrigger("SettingManagerOff");
         }
-        _settingManagerOn = _settingManagerOn == true ? false: true;
+        settingManagerOn = settingManagerOn == true ? false: true;
     }
 
     public void SoundPanelOnOff()
     {
+        if(!soundSettingOn)
+        {
+            SettingPanelOn(_soundSetting);
+        }
+        else
+        {
+            SettingPanelOff(_soundSetting);
+        }
+        soundSettingOn = soundSettingOn == true ? false : true;
+    }
 
+    private void SettingPanelOn(Image setting)
+    {
+        setting.rectTransform.DOMove(endPos.transform.position, 0.1f);
+    }
+
+    private void SettingPanelOff(Image setting)
+    {
+        setting.rectTransform.DOMove(startPos.transform.position, 0.1f);
     }
 
     public void ReSoulutionOnOff()
@@ -70,8 +95,7 @@ public class UISetting : MonoBehaviour
 
     public void GameTimeControll()
     {
-        GameManager.Instance.GameTimeControll();
-        Debug.Log(Time.deltaTime);
+        //GameManager.Instance.GameTimeControll();
     }
 
 }
