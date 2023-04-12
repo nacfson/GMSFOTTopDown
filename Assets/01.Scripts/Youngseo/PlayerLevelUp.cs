@@ -15,7 +15,7 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void Awake()
     {
-        playerShoot = GetComponent<PlayerShoot>();
+        playerShoot = FindObjectOfType<PlayerShoot>();
     }
 
     private void Start()
