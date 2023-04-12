@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    float speed = 5f;
-    bool Form = false;
+    private Camera cam;
+    float speed;
     public float xLimit;
     public float yLimit;
+    public PlayerSO _playerSO;
+    public GunRotate gunRotate;
 
+    private void Awake()
+    {
+        cam = Camera.main;
+        speed = _playerSO.speed;
+        gunRotate = FindObjectOfType<GunRotate>();
+
+    }
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Transformation();
-        }
+        PlayerRotate();
     }
 
     private void LateUpdate()
@@ -28,17 +33,19 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector2(x, y);
     }
 
-    private void Transformation()
+    private void PlayerRotate()
     {
-        if (!Form)
+        float x = cam.ScreenToWorldPoint(Input.mousePosition).x;
+
+        if (x < transform.position.x)
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
-            Form = true;
+            transform.localScale = new Vector3(-1, 1, 1);
+            gunRotate.Flipreverse();
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = Color.white;
-            Form = false;
+            transform.localScale = new Vector3(1, 1, 1);
+            gunRotate.Flip();
         }
     }
 }
