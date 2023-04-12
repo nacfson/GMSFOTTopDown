@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e8da5f40b76eb49a6b4e492d20f2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 7049875010135633293, guid: add07b76c65777d45a9b149d695890e1, type: 3}
+  BulletPrefab: {fileID: 1342603487345933284, guid: 6fc98a4121443e541a1f2d46483fa801, type: 3}
   shootDelay: 0
   _playerSO: {fileID: 11400000, guid: bbbbffc138f7ece449316a06eae4ba78, type: 2}
 --- !u!1 &371494205
@@ -611,7 +611,6 @@ GameObject:
   - component: {fileID: 1054188711}
   - component: {fileID: 1054188712}
   - component: {fileID: 1054188714}
-  - component: {fileID: 1054188715}
   - component: {fileID: 1054188708}
   - component: {fileID: 1054188707}
   m_Layer: 3
@@ -779,21 +778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXP: {fileID: 1859482047}
   _Level: {fileID: 62204576}
---- !u!114 &1054188715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054188706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e8da5f40b76eb49a6b4e492d20f2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 1342603487345933284, guid: 6fc98a4121443e541a1f2d46483fa801, type: 3}
-  shootDelay: 0.5
-  _playerSO: {fileID: 11400000, guid: bbbbffc138f7ece449316a06eae4ba78, type: 2}
 --- !u!1 &1105343017
 GameObject:
   m_ObjectHideFlags: 0
