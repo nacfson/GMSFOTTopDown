@@ -7,12 +7,12 @@ public class TimeTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector2(100,100) * 5f * Time.deltaTime);
+        transform.Translate(Vector3.right * 5f * Time.deltaTime);
     }
 }

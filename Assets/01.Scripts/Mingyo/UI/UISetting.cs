@@ -19,7 +19,7 @@ public class UISetting : MonoBehaviour
     private bool settingManagerOn = false;
 
     [SerializeField]
-    Image _soundSetting;
+    GameObject _soundSetting;
     public bool soundSettingOn = false;
 
     [SerializeField]
@@ -32,6 +32,7 @@ public class UISetting : MonoBehaviour
     GameObject _gotoMainSetting;
 
     Animator _animator;
+    Tweener _tweener;
 
     private void Awake()
     {
@@ -44,7 +45,7 @@ public class UISetting : MonoBehaviour
         {
             SettingPanelOnOff();
         }
-        Time.timeScale = Time.unscaledDeltaTime;
+        //Time.timeScale = Time.unscaledDeltaTime;
     }
 
     public void SettingPanelOnOff()
@@ -62,7 +63,8 @@ public class UISetting : MonoBehaviour
 
     public void SoundPanelOnOff()
     {
-        if(!soundSettingOn)
+        _tweener.Kill();
+        if (!soundSettingOn)
         {
             SettingPanelOn(_soundSetting);
         }
@@ -73,14 +75,18 @@ public class UISetting : MonoBehaviour
         soundSettingOn = soundSettingOn == true ? false : true;
     }
 
-    private void SettingPanelOn(Image setting)
+    private void SettingPanelOn(GameObject setting)
     {
-        setting.rectTransform.DOMove(endPos.transform.position, 0.1f);
+        setting.SetActive(true);
+        _tweener = setting.transform.DOScale(new Vector3(10f, 10f, 10f), 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
     }
 
-    private void SettingPanelOff(Image setting)
+    private void SettingPanelOff(GameObject setting)
     {
-        setting.rectTransform.DOMove(startPos.transform.position, 0.1f);
+        _tweener = setting.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true).OnComplete(()=>
+        {
+            setting.SetActive(false);
+        });
     }
 
     public void ReSoulutionOnOff()
@@ -95,7 +101,7 @@ public class UISetting : MonoBehaviour
 
     public void GameTimeControll()
     {
-        //GameManager.Instance.GameTimeControll();
+        GameManager.Instance.GameTimeControll();
     }
 
 }
