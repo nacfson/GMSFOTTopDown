@@ -8,18 +8,8 @@ using DG.Tweening;
 
 public class UISetting : MonoBehaviour
 {
-    [SerializeField]
-    Transform startPos;
-    [SerializeField]
-    Transform endPos;
+    Dictionary<string, GameObject> _settingdic = new Dictionary<string, GameObject>();
 
-
-    [SerializeField]
-    GameObject _settingManager;
-    private bool settingManagerOn = false;
-
-    [SerializeField]
-    GameObject _soundSetting;
     public bool soundSettingOn = false;
 
     [SerializeField]
@@ -30,35 +20,15 @@ public class UISetting : MonoBehaviour
 
     [SerializeField]
     GameObject _gotoMainSetting;
-
-    Animator _animator;
     Tweener _tweener;
 
     private void Awake()
     {
-        _animator = transform.GetComponentInChildren<Animator>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        for (int i = 0; i < transform.childCount; i++)
         {
-            SettingPanelOnOff();
+            _settingdic.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
+            Debug.Log(_settingdic[transform.GetChild(i).name]);
         }
-        //Time.timeScale = Time.unscaledDeltaTime;
-    }
-
-    public void SettingPanelOnOff()
-    {
-        if (!settingManagerOn)
-        {
-            _animator.SetTrigger("SettingManagerOn");
-        }
-        else
-        {
-            _animator.SetTrigger("SettingManagerOff");
-        }
-        settingManagerOn = settingManagerOn == true ? false: true;
     }
 
     public void SoundPanelOnOff()
@@ -66,15 +36,16 @@ public class UISetting : MonoBehaviour
         _tweener.Kill();
         if (!soundSettingOn)
         {
-            SettingPanelOn(_soundSetting);
+            SettingPanelOn(_settingdic["SoundSettingButton"].transform.GetChild(1).gameObject);
         }
         else
         {
-            SettingPanelOff(_soundSetting);
+            SettingPanelOff(_settingdic["SoundSettingButton"].transform.GetChild(1).gameObject);
         }
         soundSettingOn = soundSettingOn == true ? false : true;
     }
 
+    #region SettingOnOffDotween
     private void SettingPanelOn(GameObject setting)
     {
         setting.SetActive(true);
@@ -88,20 +59,21 @@ public class UISetting : MonoBehaviour
             setting.SetActive(false);
         });
     }
+    #endregion
 
     public void ReSoulutionOnOff()
     {
 
     }
 
+
+    #region ETC
     public void LoadScene()
     {
         GameManager.Instance.MoveScene("Main");
     }
 
-    public void GameTimeControll()
-    {
-        GameManager.Instance.GameTimeControll();
-    }
+
+    #endregion
 
 }

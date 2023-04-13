@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 956782226}
   - component: {fileID: 956782225}
   - component: {fileID: 956782227}
+  - component: {fileID: 956782228}
   m_Layer: 0
   m_Name: SettingPanel
   m_TagString: Untagged
@@ -715,8 +716,6 @@ RectTransform:
   - {fileID: 2034253100}
   - {fileID: 1423964610}
   - {fileID: 1294473703}
-  - {fileID: 1490756805}
-  - {fileID: 1333941016}
   m_Father: {fileID: 1166660190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -787,6 +786,22 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 50}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &956782228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956782223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb909b09fc15a549b8e06baea603ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSettingOn: 0
+  _resolutionSetting: {fileID: 0}
+  _reStartSetting: {fileID: 0}
+  _gotoMainSetting: {fileID: 0}
 --- !u!1 &975222524
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,8 +811,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 975222525}
-  - component: {fileID: 975222526}
   - component: {fileID: 975222527}
+  - component: {fileID: 975222528}
   m_Layer: 0
   m_Name: SettingManager
   m_TagString: Untagged
@@ -821,26 +836,6 @@ Transform:
   m_Father: {fileID: 2115289334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &975222526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975222524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb909b09fc15a549b8e06baea603ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPos: {fileID: 1490756805}
-  endPos: {fileID: 1333941016}
-  _settingManager: {fileID: 956782223}
-  _soundSetting: {fileID: 1508541140}
-  soundSettingOn: 0
-  _resolutionSetting: {fileID: 0}
-  _reStartSetting: {fileID: 0}
-  _gotoMainSetting: {fileID: 0}
 --- !u!95 &975222527
 Animator:
   serializedVersion: 5
@@ -862,6 +857,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &975222528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975222524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ec83c9a420ad94f891704adfc8be37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settingManager: {fileID: 956782223}
 --- !u!1 &1166660189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1152,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 975222526}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
@@ -1194,37 +1202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294473702}
   m_CullTransparentMesh: 1
---- !u!1 &1333941015
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1333941016}
-  m_Layer: 0
-  m_Name: EndPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1333941016
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333941015}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27, y: -52, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 956782224}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423964609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1286,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 975222526}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
         m_MethodName: SettingPanelOnOff
         m_Mode: 1
@@ -1359,37 +1336,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423964609}
   m_CullTransparentMesh: 1
---- !u!1 &1490756804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1490756805}
-  m_Layer: 0
-  m_Name: StartPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1490756805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490756804}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1317, y: -23, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 956782224}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1508541140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1348,7 @@ GameObject:
   - component: {fileID: 1508541143}
   - component: {fileID: 1508541142}
   m_Layer: 0
-  m_Name: Panel
+  m_Name: SoundSettingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1808,7 +1754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 975222526}
+      - m_Target: {fileID: 956782228}
         m_TargetAssemblyTypeName: UISetting, Assembly-CSharp
         m_MethodName: SoundPanelOnOff
         m_Mode: 1
