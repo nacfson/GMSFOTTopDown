@@ -1,62 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField]
-    private float _bossHp = 500f;
-    [SerializeField]
-    public GameObject a;
-    [SerializeField]
-    public GameObject b;
+    
+    public BossState currentState;
 
-    [SerializeField]
-    private string rBossHand;
-    [SerializeField]
-    private string lBossHand;
-    [SerializeField]
-    private Transform _rtrm;
-    [SerializeField]
-    private Transform _lTrm;
-    public GameObject _rhandAttack;
-    public GameObject _lhandAttack;
-    public float attackcool = 1f;
-    int changeAttack = 0;
-
-    private void Awake()
-    {
-        _rtrm = GameObject.Find("RAttackPos").transform;
-        _lTrm = GameObject.Find("LAttackPos").transform;
-    }
-
+    public TextMeshProUGUI battleText;
     private void Start()
     {
-        StartCoroutine(HandAttack());
-
+        TransitionState(new IdleState(this));
     }
+
     private void Update()
     {
+        currentState.Update();
     }
 
-    IEnumerator HandAttack()
+    public void TransitionState(BossState bossState)
     {
-        while (true)
-        {
-            if (changeAttack == 0)
-            {
-                b = PoolList.instance.Pop(lBossHand, _lTrm.position);
-                changeAttack++;
-                yield return new WaitForSeconds(attackcool);
-                if (changeAttack > 0)
-                {
-                    a = PoolList.instance.Pop(rBossHand, _rtrm.position);
-                    changeAttack = 0;
-                    yield return new WaitForSeconds(attackcool);
-                }
-            }
-        }
-            
+        currentState = bossState;
+        currentState.EnterState();
+    }
+}
+
+
+public abstract class BossState
+{
+    protected Boss boss;
+
+    public BossState(Boss boss)
+    {
+        this.boss = boss;
+    }
+
+    public virtual void EnterState()
+    {
+    }
+
+    public abstract void Update();
+
+    public virtual void ExitState()
+    {
+
+    }
+}
+
+public class IdleState : BossState
+{
+    public IdleState(Boss boss) : base(boss) { }
+
+    public override void EnterState()
+    {
+        boss.battleText.text = "곧 보스와의 전투가 시작됩니다!\n준비하세요!";
+        base.EnterState();
+    }
+
+    public override void Update()
+    {
+
+    }
+    public override void ExitState()
+    {
+        base.ExitState();
+    }
+}
+
+public class AttackState : BossState
+{
+    public AttackState(Boss boss) : base(boss) { }
+
+    public override void EnterState()
+    {
+        base.EnterState();
+    }
+
+    public override void Update()
+    {
+        Debug.LogError("어택상태 왔고");
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
     }
 }

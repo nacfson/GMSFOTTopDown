@@ -40,7 +40,6 @@ public class PoolList : MonoBehaviour
         var obj = objs.Find(x => x.name == poolName);
         if (obj == null)
         {
-
             Debug.LogError("¾¾¹ß ÀÌ¸§");
             return null;
         }
