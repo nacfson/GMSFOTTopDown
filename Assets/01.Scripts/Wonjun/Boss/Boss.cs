@@ -1,3 +1,4 @@
+using Febucci.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -10,7 +11,7 @@ public class Boss : MonoBehaviour
 {
     
     public BossState currentState;
-
+    public TextAnimatorPlayer textplayer;
     public TextMeshProUGUI battleText;
     private void Start()
     {
@@ -57,7 +58,9 @@ public class IdleState : BossState
 
     public override void EnterState()
     {
-        boss.battleText.text = "곧 보스와의 전투가 시작됩니다!\n준비하세요!";
+        boss.battleText.SetText("<fade d=3><shake> 3초후 보스와의 전투가 시작됩니다!</shake>\n<bounce>준비하세요!");
+        boss.textplayer.ShowText(boss.battleText.text);
+        
         base.EnterState();
     }
 
