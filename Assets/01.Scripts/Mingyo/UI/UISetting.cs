@@ -8,70 +8,72 @@ using DG.Tweening;
 
 public class UISetting : MonoBehaviour
 {
+    Dictionary<string, GameObject> _settingdic = new Dictionary<string, GameObject>();
+
+    public bool soundSettingOn = false;
 
     [SerializeField]
-    RectTransform _settingManager;
-    public bool _settingManagerOn = false;
+    GameObject _resolutionSetting;
 
     [SerializeField]
-    Button _soundSettingButton;
+    GameObject _reStartSetting;
 
     [SerializeField]
-    Button _resolutionSettingButton;
-
-    [SerializeField]
-    Button _reStartButton;
-
-    [SerializeField]
-    Button _gotoMainButton;
-
-    Animator _animator;
+    GameObject _gotoMainSetting;
+    Tweener _tweener;
 
     private void Awake()
     {
-        _animator = transform.GetComponentInChildren<Animator>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        for (int i = 0; i < transform.childCount; i++)
         {
-            SettingPanelOnOff();
+            _settingdic.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
+            Debug.Log(_settingdic[transform.GetChild(i).name]);
         }
-    }
-
-    public void SettingPanelOnOff()
-    {
-        if (!_settingManagerOn)
-        {
-            _animator.SetTrigger("SettingManagerOn");
-        }
-        else
-        {
-            _animator.SetTrigger("SettingManagerOff");
-        }
-        _settingManagerOn = _settingManagerOn == true ? false: true;
     }
 
     public void SoundPanelOnOff()
     {
-
+        _tweener.Kill();
+        if (!soundSettingOn)
+        {
+            SettingPanelOn(_settingdic["SoundSettingButton"].transform.GetChild(1).gameObject);
+        }
+        else
+        {
+            SettingPanelOff(_settingdic["SoundSettingButton"].transform.GetChild(1).gameObject);
+        }
+        soundSettingOn = soundSettingOn == true ? false : true;
     }
+
+    #region SettingOnOffDotween
+    private void SettingPanelOn(GameObject setting)
+    {
+        setting.SetActive(true);
+        _tweener = setting.transform.DOScale(new Vector3(10f, 10f, 10f), 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
+    }
+
+    private void SettingPanelOff(GameObject setting)
+    {
+        _tweener = setting.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true).OnComplete(()=>
+        {
+            setting.SetActive(false);
+        });
+    }
+    #endregion
 
     public void ReSoulutionOnOff()
     {
 
     }
 
+
+    #region ETC
     public void LoadScene()
     {
         GameManager.Instance.MoveScene("Main");
     }
 
-    public void GameTimeControll()
-    {
-        GameManager.Instance.GameTimeControll();
-        Debug.Log(Time.deltaTime);
-    }
+
+    #endregion
 
 }
