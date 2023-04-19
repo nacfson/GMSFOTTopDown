@@ -17,8 +17,6 @@ public class EnemyTracker : EnemyParent
 
     protected override void Update()
     {
-        //Collider2D isAttack = Physics2D.OverlapCircle(transform.position, 2f, Player);
-
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= enemySO.follow)
         {
@@ -46,6 +44,7 @@ public class EnemyTracker : EnemyParent
                 {
                     animator.SetTrigger("Dead");
                     getKey = false;
+                    dying = true;
                 }
             }
         }
@@ -58,7 +57,7 @@ public class EnemyTracker : EnemyParent
 
     public void Chase()
     {
-        if (onAttack == false)
+        if (onAttack == false && dying == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             if (transform.position.x - player.position.x < 0)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public Transform player;
     public float speed = 3f;
@@ -19,17 +19,21 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
+
         way = player.position - transform.position;
         way = way.normalized;
+
+        
     }
     void Update()
     {
         transform.Translate(way * speed * Time.deltaTime);
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("ASDASD");
         if(collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
