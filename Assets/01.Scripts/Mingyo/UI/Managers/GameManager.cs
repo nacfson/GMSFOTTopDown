@@ -13,22 +13,13 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        else if (Instance != this)
+        else
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
-    public void GameTimeControll()
-    {
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-    }
-
-    public void MoveScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    
 }
