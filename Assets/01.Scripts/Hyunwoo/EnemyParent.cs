@@ -21,6 +21,8 @@ public abstract class EnemyParent : MonoBehaviour
     protected bool inChase = false;
     protected bool isAttack = true;
     protected bool getKey = true;
+    protected bool dying = false;
+
 
 
     protected virtual void Awake()

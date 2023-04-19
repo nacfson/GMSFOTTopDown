@@ -9,34 +9,36 @@ public class EnemyFarAttacker : EnemyParent
     protected override void Awake()
     {
         base.Awake();
-        range = 4.5f;
+        range = 5f; // 플레이어에게 다가가다가 멈춰서는 거리
     }
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
-        StartCoroutine(StartAttack());
+        StartCoroutine(StartAttack()); // 원거리 공격 코루틴
     }
 
     protected override void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.position);
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        if (distance <= range)
+        float distance = Vector2.Distance(transform.position, player.position); // 플레이어와 원거리 적의 거리
+        if(dying == false)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime); // 플레이어에게 이동
+        }
+        if (distance <= range) // 범위안에 들어왔다면
         {
             inChase = true;
             speed = 0f;
         }
-        else if (distance > range)
+        else if (distance > range) // 범위밖이라면
         {
             inChase = false; 
             speed = 2f;
         }
-        if (inChase == true)
+        if (inChase == true) 
         {
             Chase();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) // 임시 hp깎기 코드
         {
             if (getKey == true)
             {
@@ -45,12 +47,13 @@ public class EnemyFarAttacker : EnemyParent
                 {
                     animator.SetTrigger("Dead");
                     getKey = false;
+                    dying = true;
                 }
             }
         }
     }
 
-    public void Chase()
+    public void Chase() // 범위안에 들어온 경우 실행되는 함수
     {
         if (onAttack == false)
         {
@@ -69,21 +72,29 @@ public class EnemyFarAttacker : EnemyParent
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 3.5f);
+        Gizmos.DrawWireSphere(transform.position, 5f);
     }
 
     IEnumerator StartAttack()
     {
         while (true)
         {
-            float distance = Vector2.Distance(transform.position, player.position);
-            if (distance <= 3.5f)
+            if(dying == false)
             {
-                GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                obj.transform.SetParent(null);
+                float distance = Vector2.Distance(transform.position, player.position);
+                if (distance <= 5f)
+                {
+                    GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                    obj.transform.SetParent(null);
+                }
             }
             yield return new WaitForSeconds(attackDelay);
         }
+    }
+    public void Dead()
+    {
+        onAttack = false;
+        Destroy(gameObject);
     }
 }
 
