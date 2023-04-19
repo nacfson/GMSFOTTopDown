@@ -17,8 +17,6 @@ public class EnemyTracker : EnemyParent
 
     protected override void Update()
     {
-        //Collider2D isAttack = Physics2D.OverlapCircle(transform.position, 2f, Player);
-
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= enemySO.follow)
         {
