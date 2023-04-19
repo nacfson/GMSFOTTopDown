@@ -3,13 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
   - 
@@ -42,21 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Deco
+    uniqueID: 922438983
+    locked: 0
   - name: Ground
-    uniqueID: 1237036195
+    uniqueID: 1343479015
     locked: 0
-  - name: Agent
-    uniqueID: 960094933
+  - name: Wall
+    uniqueID: 2400681093
     locked: 0
-  - name: Impact
-    uniqueID: 3639524087
+  - name: Obstacle
+    uniqueID: 1371072745
     locked: 0
-  - name: Top
-    uniqueID: 840252405
-    locked: 0
-  - name: Player
-    uniqueID: 1952457389
-    locked: 0
-  - name: Gun
-    uniqueID: 2963463945
+  - name: Gate
+    uniqueID: 2406399199
     locked: 0
