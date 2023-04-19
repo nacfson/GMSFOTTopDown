@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class TimeTest : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private AudioSource SFX;
+
     void Start()
     {
-        Time.timeScale = 1.0f;
+        SFX = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * 5f * Time.deltaTime);
+        //transform.Translate(Vector3.right * 5f * Time.deltaTime);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            SoundManager.Instance.SFXPlay(SFX);
+        }
     }
 }

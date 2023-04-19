@@ -37,6 +37,6 @@ public class UISettingAnimation : MonoBehaviour
 
     public void GameTimeControll()
     {
-        GameManager.Instance.GameTimeControll();
+        TimeManager.Instance.TimeControll();
     }
 }

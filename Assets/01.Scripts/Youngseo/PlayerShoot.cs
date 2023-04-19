@@ -10,8 +10,8 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ShootBullet());
         shootDelay = _playerSO.shootDelay;
+        StartCoroutine(ShootBullet());
     }
 
     IEnumerator ShootBullet()

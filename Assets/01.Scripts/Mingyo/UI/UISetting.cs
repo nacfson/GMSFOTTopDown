@@ -12,14 +12,6 @@ public class UISetting : MonoBehaviour
 
     public bool soundSettingOn = false;
 
-    [SerializeField]
-    GameObject _resolutionSetting;
-
-    [SerializeField]
-    GameObject _reStartSetting;
-
-    [SerializeField]
-    GameObject _gotoMainSetting;
     Tweener _tweener;
 
     private void Awake()
@@ -48,16 +40,12 @@ public class UISetting : MonoBehaviour
     #region SettingOnOffDotween
     private void SettingPanelOn(GameObject setting)
     {
-        setting.SetActive(true);
         _tweener = setting.transform.DOScale(new Vector3(10f, 10f, 10f), 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
     }
 
     private void SettingPanelOff(GameObject setting)
     {
-        _tweener = setting.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true).OnComplete(()=>
-        {
-            setting.SetActive(false);
-        });
+        _tweener = setting.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
     }
     #endregion
 
@@ -70,7 +58,7 @@ public class UISetting : MonoBehaviour
     #region ETC
     public void LoadScene()
     {
-        GameManager.Instance.MoveScene("Main");
+        SceneMoveManager.Instance.MoveScene("Main");
     }
 
 
