@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Camera cam;
+    Camera cam;
     float speed;
-    public float xLimit;
-    public float yLimit;
-    public PlayerSO _playerSO;
-    public GunRotate gunRotate;
+    [SerializeField] float xLimit;
+    [SerializeField] float yLimit;
+    [SerializeField] PlayerSO _playerSO;
+    GunRotate gunRotate;
+    Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         cam = Camera.main;
         speed = _playerSO.speed;
         gunRotate = FindObjectOfType<GunRotate>();
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
+        if (x != 0 || y != 0) animator.SetBool("Walk", true);
+        else animator.SetBool("Walk", false);
         PlayerRotate();
     }
 
