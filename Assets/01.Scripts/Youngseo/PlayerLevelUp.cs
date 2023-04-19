@@ -22,6 +22,7 @@ public class PlayerLevelUp : MonoBehaviour
     {
         _Level.text = "Lv. 1";
     }
+
     public void AddExp()
     {
         Exp += 5;
