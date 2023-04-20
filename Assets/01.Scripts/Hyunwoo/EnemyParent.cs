@@ -20,11 +20,11 @@ public abstract class EnemyParent : MonoBehaviour
     [SerializeField]
     protected AudioSource SFX;
 
-    protected bool onAttack = false;
-    protected bool inChase = false;
-    protected bool isAttack = true;
-    protected bool getKey = true;
-    protected bool dying = false;
+    protected bool onAttack = false; // 공격 중인지 판단하는 변수
+    protected bool inChase = false; // 감지 범위에 들어왔는지 판단하는 변수
+    protected bool isAttack = true; // 공격 범위에 들어왔는지 판단하는 변수
+    protected bool getKey = true; // 데미지 임시 코드에 들어가는 변수
+    protected bool dying = false; // 죽는동안 움직일 수 없게 하는 변수
 
 
 
@@ -32,8 +32,8 @@ public abstract class EnemyParent : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        testplayercontroller = GameObject.Find("Player").GetComponent<TestPlayerController>();
-        player = GameObject.Find("Player").GetComponent<Transform>();
+        testplayercontroller = GameObject.FindWithTag("Player").GetComponent<TestPlayerController>();
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         SFX = GetComponent<AudioSource>();
     }
     protected virtual void Start()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    public EnemySO enemySO;
     public Transform player;
     public float speed = 3f;
     public Vector2 way;
@@ -14,7 +15,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Transform>();
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         testplayercontroller = GameObject.Find("Player").GetComponent<TestPlayerController>();
     }
     void Start()
@@ -37,6 +38,7 @@ public class EnemyBullet : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+            testplayercontroller.hp -= enemySO.attack;
             testplayercontroller.Damage();
         }
     }

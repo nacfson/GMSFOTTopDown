@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTracker : EnemyParent
+public class EnemyBig : EnemyParent
 {
     public LayerMask Player;
     protected override void Awake()
@@ -24,14 +24,13 @@ public class EnemyTracker : EnemyParent
         }
         else if (distance > enemySO.follow)
         {
-            animator.SetBool("Run", false);
             inChase = false;
         }
         if (inChase == true)
         {
             Chase();
         }
-        if (distance <= 1.5f)
+        if (distance <= 2.5f)
         {
             StartAttack();
         }
@@ -52,7 +51,7 @@ public class EnemyTracker : EnemyParent
     }
     private void FixedUpdate()
     {
-        isAttack = Physics2D.OverlapCircle(transform.position, 2f, Player);
+        isAttack = Physics2D.OverlapCircle(transform.position, 4f, Player);
     }
 
     public void Chase()
@@ -63,12 +62,10 @@ public class EnemyTracker : EnemyParent
             if (transform.position.x - player.position.x < 0)
             {
                 sprite.flipX = false;
-                animator.SetBool("Run", true);
             }
             else if (transform.position.x - player.position.x >= 0)
             {
                 sprite.flipX = true;
-                animator.SetBool("Run", true);
             }
         }
 
@@ -82,12 +79,11 @@ public class EnemyTracker : EnemyParent
     {
         SoundManager.Instance.SFXPlay(SFX);
         onAttack = true;
-        Invoke("ReturnRun", 0.8f);
+        Invoke("ReturnRun", 2f);
 
     }
     public void ReturnRun()
     {
-        animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
         onAttack = false;
     }
@@ -96,7 +92,6 @@ public class EnemyTracker : EnemyParent
         if (isAttack == true)
         {
             testplayercontroller.hp -= enemySO.attack;
-            testplayercontroller.Damage();
         }
     }
     public void Dead()
@@ -108,9 +103,9 @@ public class EnemyTracker : EnemyParent
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1.5f);
+        Gizmos.DrawWireSphere(transform.position, 4f);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, 2f);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
 
