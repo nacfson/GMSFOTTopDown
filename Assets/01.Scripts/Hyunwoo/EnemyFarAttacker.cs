@@ -12,8 +12,9 @@ public class EnemyFarAttacker : EnemyParent
         range = 5f; // 플레이어에게 다가가다가 멈춰서는 거리
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(StartAttack()); // 원거리 공격 코루틴
     }
 
@@ -84,6 +85,7 @@ public class EnemyFarAttacker : EnemyParent
                 float distance = Vector2.Distance(transform.position, player.position);
                 if (distance <= 5f)
                 {
+                    SoundManager.Instance.SFXPlay(SFX);
                     GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                     obj.transform.SetParent(null);
                 }

@@ -17,6 +17,9 @@ public abstract class EnemyParent : MonoBehaviour
     protected SpriteRenderer sprite;
     protected Animator animator;
     protected TestPlayerController testplayercontroller;
+    [SerializeField]
+    protected AudioSource SFX;
+
     protected bool onAttack = false;
     protected bool inChase = false;
     protected bool isAttack = true;
@@ -31,6 +34,7 @@ public abstract class EnemyParent : MonoBehaviour
         animator = GetComponent<Animator>();
         testplayercontroller = GameObject.Find("Player").GetComponent<TestPlayerController>();
         player = GameObject.Find("Player").GetComponent<Transform>();
+        SFX = GetComponent<AudioSource>();
     }
     protected virtual void Start()
     {
