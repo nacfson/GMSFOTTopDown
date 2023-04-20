@@ -76,11 +76,11 @@ public class EnemyTracker : EnemyParent
     public void StartAttack()
     {
         animator.SetBool("Attack", true);
-
     }
 
-    public void StopAttack()
+    public void StopAttack() // 공격중 움직이지 않게 만들어주는 함수 : 공격 애니메이션 시작 시 실행됨
     {
+        SoundManager.Instance.SFXPlay(SFX);
         onAttack = true;
         Invoke("ReturnRun", 0.8f);
 
