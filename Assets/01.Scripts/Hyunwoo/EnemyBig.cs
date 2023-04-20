@@ -17,6 +17,7 @@ public class EnemyBig : EnemyParent
 
     protected override void Update()
     {
+        base.Update();
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= enemySO.follow)
         {
@@ -33,19 +34,6 @@ public class EnemyBig : EnemyParent
         if (distance <= 2.5f)
         {
             StartAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (getKey == true)
-            {
-                enemySO.hp--;
-                if (enemySO.hp <= 0)
-                {
-                    animator.SetTrigger("Dead");
-                    getKey = false;
-                    dying = true;
-                }
-            }
         }
 
     }
@@ -106,6 +94,10 @@ public class EnemyBig : EnemyParent
         Gizmos.DrawWireSphere(transform.position, 4f);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+    protected override IEnumerator Damaged()
+    {
+        return base.Damaged();
     }
 }
 

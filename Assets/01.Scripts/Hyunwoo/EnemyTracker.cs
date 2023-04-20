@@ -17,6 +17,7 @@ public class EnemyTracker : EnemyParent
 
     protected override void Update()
     {
+        base.Update();
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= enemySO.follow)
         {
@@ -34,19 +35,6 @@ public class EnemyTracker : EnemyParent
         if (distance <= 1.5f)
         {
             StartAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (getKey == true)
-            {
-                enemySO.hp--;
-                if (enemySO.hp <= 0)
-                {
-                    animator.SetTrigger("Dead");
-                    getKey = false;
-                    dying = true;
-                }
-            }
         }
 
     }
@@ -111,6 +99,10 @@ public class EnemyTracker : EnemyParent
         Gizmos.DrawWireSphere(transform.position, 1.5f);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 2f);
+    }
+    protected override IEnumerator Damaged()
+    {
+        return base.Damaged();
     }
 }
 

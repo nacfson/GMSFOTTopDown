@@ -20,6 +20,7 @@ public class EnemyFarAttacker : EnemyParent
 
     protected override void Update()
     {
+        base.Update();
         float distance = Vector2.Distance(transform.position, player.position); // 플레이어와 원거리 적의 거리
         if(dying == false)
         {
@@ -39,19 +40,7 @@ public class EnemyFarAttacker : EnemyParent
         {
             Chase();
         }
-        if (Input.GetKeyDown(KeyCode.Space)) // 임시 hp깎기 코드
-        {
-            if (getKey == true)
-            {
-                enemySO.hp--;
-                if (enemySO.hp <= 0)
-                {
-                    animator.SetTrigger("Dead");
-                    getKey = false;
-                    dying = true;
-                }
-            }
-        }
+        
     }
 
     public void Chase() // 범위안에 들어온 경우 실행되는 함수
@@ -97,6 +86,10 @@ public class EnemyFarAttacker : EnemyParent
     {
         onAttack = false;
         Destroy(gameObject);
+    }
+    protected override IEnumerator Damaged()
+    {
+        return base.Damaged();
     }
 }
 
