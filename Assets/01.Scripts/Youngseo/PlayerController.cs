@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerSO _playerSO;
     GunRotate gunRotate;
     Animator animator;
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -18,16 +19,19 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         speed = _playerSO.speed;
         gunRotate = FindObjectOfType<GunRotate>();
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
+
         if (x != 0 || y != 0) animator.SetBool("Walk", true);
         else animator.SetBool("Walk", false);
         PlayerRotate();
+
+        if (Input.GetKeyDown(KeyCode.X)) Hit();
     }
 
     private void LateUpdate()
@@ -51,5 +55,18 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             gunRotate.Flip();
         }
+    }
+
+    public void Hit()
+    {
+        StopCoroutine(Damaged());
+        StartCoroutine(Damaged());
+    }
+
+    IEnumerator Damaged()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSecondsRealtime(0.3f);
+        spriteRenderer.color = Color.white;
     }
 }

@@ -6,7 +6,7 @@ public class PlayerBullet : MonoBehaviour
 {
     float speed;
     PlayerLevelUp playerExp;
-    public PlayerSO _playerSO;
+    [SerializeField] PlayerSO _playerSO;
 
     private void Awake()
     {
@@ -14,14 +14,14 @@ public class PlayerBullet : MonoBehaviour
         speed = _playerSO.bulletSpeed;
     }
 
+    private void Start()
+    {
+        Destroy(gameObject, 1f);
+    }
+
     void Update()
     {
         transform.position += transform.right * Time.deltaTime * speed;
-        Collider2D Player = Physics2D.OverlapCircle(transform.position, 20f, 1 << 3);
-        if (Player == null)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
