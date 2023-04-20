@@ -607,8 +607,8 @@ GameObject:
   m_Component:
   - component: {fileID: 616926350}
   - component: {fileID: 616926349}
-  - component: {fileID: 616926352}
   - component: {fileID: 616926348}
+  - component: {fileID: 616926352}
   - component: {fileID: 616926351}
   m_Layer: 0
   m_Name: Boss
@@ -676,7 +676,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 960094933
+  m_SortingLayerID: 1343479015
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 533615088, guid: d78257cb59bbdcd4784b9a1001bc2a48, type: 3}
@@ -737,9 +737,9 @@ MonoBehaviour:
   - {fileID: 532238505}
   - {fileID: 1711876242}
   prefabs:
-  - {fileID: 2886675229022700430, guid: 7d5be3ff5403ac745be1784cf8561891, type: 3}
   - {fileID: 547653381578388013, guid: 6f69bbab224959a4d8b1149a3dd945e1, type: 3}
-  spawnInterval: 0
+  - {fileID: 2886675229022700430, guid: 7d5be3ff5403ac745be1784cf8561891, type: 3}
+  spawnInterval: 3
   spawnRadius: 0
 --- !u!1 &1370870744
 GameObject:

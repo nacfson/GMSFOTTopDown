@@ -11,7 +11,7 @@ public class BossAttack : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnBoss", 0f, spawnInterval);
+        InvokeRepeating("SpawnBoss", 5.5f, spawnInterval);
     }
 
     private void SpawnBoss()
