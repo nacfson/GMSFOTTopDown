@@ -45,7 +45,7 @@ public class EnemyTracker : EnemyParent
 
     public void Chase()
     {
-        if (onAttack == false && dying == false)
+        if (onAttack == false && dying == false || player != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             if (transform.position.x - player.position.x < 0)
@@ -70,8 +70,7 @@ public class EnemyTracker : EnemyParent
     {
         SoundManager.Instance.SFXPlay(SFX);
         onAttack = true;
-        Invoke("ReturnRun", 0.8f);
-
+        StartCoroutine(Return(0.8f));
     }
     public void ReturnRun()
     {
@@ -103,6 +102,14 @@ public class EnemyTracker : EnemyParent
     protected override IEnumerator Damaged()
     {
         return base.Damaged();
+    }
+
+    IEnumerator Return( float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        onAttack = false;
     }
 }
 

@@ -14,15 +14,11 @@ public abstract class EnemyParent : MonoBehaviour
     protected float speed;
     protected float range;
     protected float attackDelay = 1f;
-    protected bool color = false;
     protected SpriteRenderer sprite;
     protected Animator animator;
     protected TestPlayerController testplayercontroller;
     [SerializeField]
     protected AudioSource SFX;
-    protected float MaxG;
-    protected float MinG;
-    protected float MinB;
 
     protected bool onAttack = false; // 공격 중인지 판단하는 변수
     protected bool inChase = false; // 감지 범위에 들어왔는지 판단하는 변수

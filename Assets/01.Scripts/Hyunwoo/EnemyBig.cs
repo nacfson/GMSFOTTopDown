@@ -67,13 +67,7 @@ public class EnemyBig : EnemyParent
     {
         SoundManager.Instance.SFXPlay(SFX);
         onAttack = true;
-        Invoke("ReturnRun", 2f);
-
-    }
-    public void ReturnRun()
-    {
-        animator.SetBool("Attack", false);
-        onAttack = false;
+        StartCoroutine(Return(2f));
     }
     public void Hit()
     {
@@ -98,6 +92,13 @@ public class EnemyBig : EnemyParent
     protected override IEnumerator Damaged()
     {
         return base.Damaged();
+    }
+    IEnumerator Return(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        onAttack = false;
     }
 }
 
