@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,28 +9,58 @@ public class BossPushController : MonoBehaviour
     private float _moveSpeed = 4f;
     [SerializeField]
     private LayerMask _layermask;
-    RaycastHit2D hit;
+    private bool _hasHit = false;
+    private bool _canMove = false;
+    private SpriteRenderer _spriteRenderer;
+    Animator _anim;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+        StartCoroutine(FadeInObject());
+        _anim = GetComponent<Animator>();   
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * Time.deltaTime * _moveSpeed);
-        hit = Physics2D.BoxCast(transform.position, new Vector3(2, 3, 1), 0, Vector2.zero, _layermask);
+        if (!_hasHit && _canMove)
+        {
+            transform.Translate(Vector2.left * Time.deltaTime * _moveSpeed);
+            RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector3(2, 3, 1), 0, Vector2.zero, _layermask);
 
-        if (hit)
-        {
-            Debug.Log("하모예");
+            if (hit)
+            {
+                _hasHit = true;
+                Debug.Log("하모예");
+            }
         }
-        else
+        else if(_canMove)
         {
-            Debug.Log("안닿았어");
+            transform.Translate(Vector2.left * Time.deltaTime * _moveSpeed);
         }
     }
+
+    IEnumerator FadeInObject()
+    {
+        float elapsedTime = 0f;
+        float fadeTime = 1f;
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeTime);
+            _spriteRenderer.color = new Color(1f, 1f, 1f, alpha);
+            yield return null;
+        }
+        _spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        _canMove = true;
+        _anim.SetTrigger("BossAttack");
+
+    }
+
+    
 
     public void PushObject()
     {
