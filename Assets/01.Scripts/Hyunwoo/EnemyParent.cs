@@ -66,11 +66,9 @@ public abstract class EnemyParent : MonoBehaviour
     }
     protected virtual IEnumerator Damaged()
     {
-        // while(sprite.color.g < 255) true 아닌데도 팅겨버리는 while문.................................................
-        sprite.color = new Color(255, Mathf.Lerp(255,0,0.3f), Mathf.Lerp(255, 0, 0.3f), 255);
+        sprite.color = new Color(255, 0, 0, 255);
         yield return new WaitForSeconds(0.3f);
-        // while(sprite.color.g > 0) Lerp로 g값을 계속 증가시켜주는게 아닌가................................
-        sprite.color = new Color(255, Mathf.Lerp(0, 255, 0.3f), Mathf.Lerp(0, 255, 0.3f), 255);
+        sprite.color = new Color(255, 255, 255, 255);
         yield break;
     }
 
