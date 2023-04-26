@@ -62,6 +62,7 @@ public abstract class EnemyParent : MonoBehaviour
     }
     protected virtual IEnumerator Damaged()
     {
+        transform.GetChild(0).gameObject.GetComponent<EnemyHPBar>().Damage();
         sprite.color = new Color(255, 0, 0, 255);
         yield return new WaitForSeconds(0.3f);
         sprite.color = new Color(255, 255, 255, 255);

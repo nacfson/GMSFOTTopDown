@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemySO_Far
   m_EditorClassIdentifier: 
   speed: 2
-  attck: 0
+  attack: 0
   follow: 5
-  hp: 5
+  hp: 10
