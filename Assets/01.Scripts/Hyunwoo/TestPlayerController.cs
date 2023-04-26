@@ -8,7 +8,7 @@ public class TestPlayerController : MonoBehaviour
     bool Form = false;
     public float xLimit;
     public float yLimit;
-    public float hp = 3f;
+    public float hp = 100f;
 
     void Update()
     {
@@ -44,7 +44,6 @@ public class TestPlayerController : MonoBehaviour
     }
     public void Damage()
     {
-        hp--;
         if(hp <= 0)
         {
             Destroy(gameObject);

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   attck: 0
-  follow: 3
-  hp: 0
+  follow: 5
+  hp: 5

@@ -7,21 +7,28 @@ public abstract class EnemyParent : MonoBehaviour
     [SerializeField]
     protected EnemySO enemySO;
     protected Transform player;
-    
+
     protected Vector2 size;
     protected Vector2 playerPos;
     protected float hp;
     protected float speed;
     protected float range;
     protected float attackDelay = 1f;
+    protected bool color = false;
     protected SpriteRenderer sprite;
     protected Animator animator;
     protected TestPlayerController testplayercontroller;
-    protected bool onAttack = false;
-    protected bool inChase = false;
-    protected bool isAttack = true;
-    protected bool getKey = true;
-    protected bool dying = false;
+    [SerializeField]
+    protected AudioSource SFX;
+    protected float MaxG;
+    protected float MinG;
+    protected float MinB;
+
+    protected bool onAttack = false; // 공격 중인지 판단하는 변수
+    protected bool inChase = false; // 감지 범위에 들어왔는지 판단하는 변수
+    protected bool isAttack = true; // 공격 범위에 들어왔는지 판단하는 변수
+    protected bool getKey = true; // 데미지 임시 코드에 들어가는 변수
+    protected bool dying = false; // 죽는동안 움직일 수 없게 하는 변수
 
 
 
@@ -29,8 +36,9 @@ public abstract class EnemyParent : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        testplayercontroller = GameObject.Find("Player").GetComponent<TestPlayerController>();
-        player = GameObject.Find("Player").GetComponent<Transform>();
+        testplayercontroller = GameObject.FindWithTag("Player").GetComponent<TestPlayerController>();
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        SFX = GetComponent<AudioSource>();
     }
     protected virtual void Start()
     {
@@ -41,6 +49,27 @@ public abstract class EnemyParent : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) // 임시 hp깎기 코드
+        {
+            if (getKey == true)
+            {
+                hp--;
+                StartCoroutine(Damaged());
+                if (hp <= 0)
+                {
+                    animator.SetTrigger("Dead");
+                    getKey = false;
+                    dying = true;
+                }
+            }
+        }
     }
+    protected virtual IEnumerator Damaged()
+    {
+        sprite.color = new Color(255, 0, 0, 255);
+        yield return new WaitForSeconds(0.3f);
+        sprite.color = new Color(255, 255, 255, 255);
+        yield break;
+    }
+
 }
