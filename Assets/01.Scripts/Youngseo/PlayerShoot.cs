@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public GameObject BulletPrefab;
+    [SerializeField] GameObject BulletPrefab;
+    [SerializeField] PlayerSO _playerSO;
     public float shootDelay;
-    public PlayerSO _playerSO;
 
     private void Start()
     {
