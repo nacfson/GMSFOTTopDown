@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     Camera cam;
     float speed;
+    public int hp;
     [SerializeField] float xLimit;
     [SerializeField] float yLimit;
+    [SerializeField] Image HP;
+    [SerializeField] TextMeshProUGUI HpText;
     [SerializeField] PlayerSO _playerSO;
     GunRotate gunRotate;
     Animator animator;
@@ -15,9 +20,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
         cam = Camera.main;
         speed = _playerSO.speed;
+        hp = _playerSO.hp;
+        animator = GetComponent<Animator>();
         gunRotate = FindObjectOfType<GunRotate>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -65,8 +71,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Damaged()
     {
+        hp -= 1;
+        UpdateHpText();
         spriteRenderer.color = Color.red;
         yield return new WaitForSecondsRealtime(0.3f);
         spriteRenderer.color = Color.white;
+    }
+
+    public void UpdateHpText()
+    {
+        HP.fillAmount = (float)hp / 100;
+        HpText.text = hp.ToString() + "%";
     }
 }
