@@ -10,10 +10,11 @@ public class UISetting : MonoBehaviour
 {
     Dictionary<string, GameObject> _settingdic = new Dictionary<string, GameObject>();
 
-    public bool soundSettingOn = false;
-    public bool reSoulutionSettingOn = false;
+    private bool soundSettingOn = false;
+    private bool reSoulutionSettingOn = false;
 
     Tweener _tweener;
+    Vector3 onScale = new Vector3(7f, 7f, 7f);
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class UISetting : MonoBehaviour
     #region SettingOnOffDotween
     private void SettingPanelOn(GameObject setting)
     {
-        _tweener = setting.transform.DOScale(new Vector3(7f, 7f, 7f), 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
+        _tweener = setting.transform.DOScale(onScale, 0.5f).SetEase(Ease.InExpo).SetEase(Ease.OutBounce).SetUpdate(true);
     }
 
     private void SettingPanelOff(GameObject setting)
@@ -80,8 +81,6 @@ public class UISetting : MonoBehaviour
     {
         SceneMoveManager.Instance.MoveScene("Main");
     }
-
-
     #endregion
 
 }
