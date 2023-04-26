@@ -12,7 +12,6 @@ public class TimeTest : MonoBehaviour
         SFX = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //transform.Translate(Vector3.right * 5f * Time.deltaTime);
