@@ -1595,7 +1595,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1603,6 +1603,111 @@ TextureImporter:
       bones: []
       spriteID: 278b30991790d984db743729a594189e
       internalID: -1763708416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_71
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 614
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f99c44a48f5984b4c846c4535e711659
+      internalID: 637987682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_72
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 448
+        width: 8
+        height: 80
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3094e4cc8bc3c1249bcf6c33e5999d61
+      internalID: 80521724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_73
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 448
+        width: 8
+        height: 80
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f90fbd53534ea0648b7abf51494b1c8e
+      internalID: -894950582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_74
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 448
+        width: 8
+        height: 80
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 503b6c91c99c37f48ad711a29086b747
+      internalID: 1805862612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_75
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 447
+        width: 8
+        height: 81
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ced7a41d00ffb438925367f8c5b762
+      internalID: -297909459
       vertices: []
       indices: 
       edges: []
@@ -1687,6 +1792,11 @@ TextureImporter:
       mainlevbuild_69: 101230095
       mainlevbuild_7: -853279208
       mainlevbuild_70: -1763708416
+      mainlevbuild_71: 637987682
+      mainlevbuild_72: 80521724
+      mainlevbuild_73: -894950582
+      mainlevbuild_74: 1805862612
+      mainlevbuild_75: -297909459
       mainlevbuild_8: 1472022955
       mainlevbuild_9: 1333222112
   spritePackingTag: 
