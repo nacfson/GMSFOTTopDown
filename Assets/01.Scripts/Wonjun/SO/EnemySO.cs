@@ -10,4 +10,5 @@ public class EnemySO : ScriptableObject
     public float attack;
     public float follow;
     public float hp;
+    public ParticleSystem bloodParticle;
 }

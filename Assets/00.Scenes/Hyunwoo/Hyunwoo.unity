@@ -247,6 +247,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8732609835580417634, guid: 3e20d5de09d1e454f86d646bd9d068fe, type: 3}
   m_PrefabInstance: {fileID: 8732609835220975952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &422919046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422919048}
+  - component: {fileID: 422919047}
+  m_Layer: 0
+  m_Name: ParticleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &422919047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422919046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483b87adfe4ba7849889e299004a08c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &422919048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422919046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.8682115, y: 1.045625, z: 2.1807985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &564015858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8732609835580417635, guid: 3e20d5de09d1e454f86d646bd9d068fe, type: 3}
@@ -1335,6 +1379,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_2
       objectReference: {fileID: 0}
+    - target: {fileID: 1304829161709131774, guid: 704ab2c698b09b94a94997abf1c55c9d, type: 3}
+      propertyPath: fireParticle
+      value: 
+      objectReference: {fileID: 19800000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
+    - target: {fileID: 1304829161709131774, guid: 704ab2c698b09b94a94997abf1c55c9d, type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 19800000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
     - target: {fileID: 1304829161709131775, guid: 704ab2c698b09b94a94997abf1c55c9d, type: 3}
       propertyPath: m_RootOrder
       value: 1

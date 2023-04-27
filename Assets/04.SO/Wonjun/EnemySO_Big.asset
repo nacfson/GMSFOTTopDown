@@ -16,3 +16,4 @@ MonoBehaviour:
   attack: 10
   follow: 5
   hp: 20
+  bloodParticle: {fileID: 19800000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}

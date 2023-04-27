@@ -62,6 +62,7 @@ public abstract class EnemyParent : MonoBehaviour
     }
     protected virtual IEnumerator Damaged()
     {
+        ParticleManager.Instance.SFXPlay(enemySO.bloodParticle, transform.position); //이 포지션은 플레이어의 총알을 맞을 포지션으로 바꿀 예정
         transform.GetChild(0).gameObject.GetComponent<EnemyHPBar>().Damage();
         sprite.color = new Color(255, 0, 0, 255);
         yield return new WaitForSeconds(0.3f);

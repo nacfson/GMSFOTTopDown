@@ -19,11 +19,12 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
-    public void SFXPlay(GameObject particle)
+    public void SFXPlay(ParticleSystem particle, Vector2 transform)
     {
-        ParticleSystem obj = particle.GetComponent<ParticleSystem>();
-        obj.Play();
-        Destroy(obj, obj.startLifetime);
+        ParticleSystem _particle = particle.GetComponent<ParticleSystem>();
+        Instantiate(_particle, transform, Quaternion.identity);
+        _particle.Play();
+        //Ç®¸µ ÇØ¾ßµÊ
     }
 
 }

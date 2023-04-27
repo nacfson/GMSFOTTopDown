@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyFarAttacker : EnemyParent
 {
+    [SerializeField]
+    ParticleSystem fireParticle;
     public GameObject bulletPrefab;
     public LayerMask Player;
     protected override void Awake()
@@ -75,6 +77,7 @@ public class EnemyFarAttacker : EnemyParent
                 if (distance <= 5f)
                 {
                     SoundManager.Instance.SFXPlay(SFX);
+                    ParticleManager.Instance.SFXPlay(fireParticle, transform.position);
                     GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                     obj.transform.SetParent(null);
                 }

@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: bc98890f6028f444eaa7789bde5e2eeb
-labels:
-- cartoonfx
-- particles
-- blood
-- directional
-- toon
+guid: 3afb53a8767d093459b2e5287b4961ee
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
