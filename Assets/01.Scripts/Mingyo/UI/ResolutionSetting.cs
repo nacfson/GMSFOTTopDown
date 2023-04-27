@@ -22,15 +22,23 @@ public class ResolutionSetting : MonoBehaviour
         {
             width = PlayerPrefs.GetInt("width");
             height = PlayerPrefs.GetInt("height");
+            if((PlayerPrefs.GetInt("screenmode") == 0))
+            {
+                _screenMode = FullScreenMode.Windowed;
+            }
+            else
+            {
+                _screenMode = FullScreenMode.FullScreenWindow;
+            }
         }
         else
         {
-            width = Screen.width;
-            height = Screen.height;
+            width = 1920;
+            height = 1080;
+            _fullScreenBtn.isOn = false;
         }
 
-        
-        Screen.SetResolution(width, height, true);
+        Screen.SetResolution(width, height, _screenMode);
         InitUI();
     }
 
@@ -80,7 +88,7 @@ public class ResolutionSetting : MonoBehaviour
         resolutionNum = a;
     }
 
-    public void OKButtonClick()
+    public void ResolutionChange()
     {
         Screen.SetResolution(resolutionsList[resolutionNum].width, resolutionsList[resolutionNum].height, _screenMode);
         PlayerPrefs.SetInt("width", resolutionsList[resolutionNum].width);
@@ -90,11 +98,16 @@ public class ResolutionSetting : MonoBehaviour
     public void FullBtn()
     {
         //screenMode = FullScreenMode.FullScreenWindow;
-        _screenMode = _screenMode == FullScreenMode.FullScreenWindow ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
-    }
-    public void ScreenBtn()
-    {
-        //screenMode = FullScreenMode.Windowed;
-    }
+        if(_screenMode == FullScreenMode.FullScreenWindow)
+        {
+            _screenMode = FullScreenMode.Windowed;
+            PlayerPrefs.SetInt("screenmode", 0);
+        }
+        else
+        {
+            _screenMode = FullScreenMode.FullScreenWindow;
+            PlayerPrefs.SetInt("screenmode", 1);
 
+        }
+    }
 }

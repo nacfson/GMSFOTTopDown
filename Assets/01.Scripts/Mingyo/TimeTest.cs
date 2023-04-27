@@ -7,9 +7,13 @@ public class TimeTest : MonoBehaviour
     [SerializeField]
     private AudioSource SFX;
 
+    [SerializeField]
+    ParticleSystem SFXParticleSystem;
+
     void Start()
     {
         SFX = GetComponent<AudioSource>();
+
     }
 
     void Update()
