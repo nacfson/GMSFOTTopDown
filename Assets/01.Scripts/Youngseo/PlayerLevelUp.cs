@@ -6,11 +6,11 @@ using TMPro;
 
 public class PlayerLevelUp : MonoBehaviour
 {
-    public Image EXP;
     float Exp = 0f;
     int ExpLimit = 20;
     int Level = 1;
-    public TextMeshProUGUI _Level;
+    [SerializeField] Image EXP;
+    [SerializeField] TextMeshProUGUI _Level;
     PlayerShoot playerShoot;
 
     private void Awake()

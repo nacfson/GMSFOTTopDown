@@ -21,7 +21,6 @@ public class GunRotate : MonoBehaviour
         float x = cam.ScreenToWorldPoint(Input.mousePosition).x;
         float y = cam.ScreenToWorldPoint(Input.mousePosition).y;
         float z = Mathf.Atan2(y - transform.position.y, x - transform.position.x) * Mathf.Rad2Deg;
-        if (transform.localScale.z < 0) transform.localScale = transform.localScale * -1;
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, z);
     }
 

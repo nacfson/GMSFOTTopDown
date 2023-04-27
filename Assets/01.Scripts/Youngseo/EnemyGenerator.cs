@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
+    [SerializeField] GameObject EnemyPrefab;
     public float delayTime = 3f;
 
     void Start()
@@ -19,6 +19,5 @@ public class EnemyGenerator : MonoBehaviour
             obj.transform.SetParent(null);
             yield return new WaitForSeconds(delayTime);
         }
-        
     }
 }

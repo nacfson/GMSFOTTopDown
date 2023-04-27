@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTransformation : MonoBehaviour
 {
-    public bool Form = false;
+    bool Form = false;
     SpriteRenderer spriteRenderer;
 
     private void Awake()
