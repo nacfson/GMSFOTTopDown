@@ -45,7 +45,7 @@ public class EnemyTracker : EnemyParent
 
     public void Chase()
     {
-        if (onAttack == false && dying == false || player != null)
+        if (onAttack == false && dying == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             if (transform.position.x - player.position.x < 0)

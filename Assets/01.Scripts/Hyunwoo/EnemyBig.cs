@@ -96,7 +96,6 @@ public class EnemyBig : EnemyParent
     IEnumerator Return(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
         onAttack = false;
     }

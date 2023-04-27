@@ -6,8 +6,9 @@ public class EnemyHPBar : MonoBehaviour
 {
     Transform _BarTrm;
     public EnemySO enemySO;
+    //public PlayerSO playerSO;
     float fullHp = 1f;
-    float hp;
+    float damage;
 
     private void Awake()
     {
@@ -16,17 +17,13 @@ public class EnemyHPBar : MonoBehaviour
 
     private void Start()
     {
-        hp = 100 / enemySO.hp;
-        hp /= 100; // 1당 닳아야할 스케일 값
-        Debug.Log($"{transform.parent.name}의 데미지값 : {hp}");
-        Debug.Log($"{transform.parent.name}의 총 hp 값 : {fullHp}");
+        damage = 100 / enemySO.hp;
+        damage /= 100; // 데미지 1당 닳아야할 스케일 값
     }
 
     public void Damage()
     {
-        fullHp -= hp;
-        _BarTrm.localScale = new Vector3(fullHp, 0, 0);
-        Debug.Log($"{transform.parent.name}의 데미지값 : {hp}");
-        Debug.Log($"{transform.parent.name}의 총 hp 값 : {fullHp}");
+        fullHp -= damage;// * playerSO.damage;
+        _BarTrm.localScale = new Vector3(fullHp, 1, 1);
     }
 }

@@ -25,13 +25,9 @@ public class EnemyBullet : MonoBehaviour
         transform.Translate(way * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public float Damage(float hp)
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-            testplayercontroller.hp -= enemySO.attack;
-            testplayercontroller.Damage();
-        }
+        hp -= enemySO.attack;
+        return hp;
     }
 }
