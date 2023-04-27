@@ -11,6 +11,8 @@ public class StartSceneUI : MonoBehaviour
     public TextMeshProUGUI _titleText;
     [SerializeField]
     private GameObject _exPenal;
+    [SerializeField]
+    private GameObject _settingPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,4 +33,5 @@ public class StartSceneUI : MonoBehaviour
     {
         _exPenal.SetActive(false);
     }
+    
 }
