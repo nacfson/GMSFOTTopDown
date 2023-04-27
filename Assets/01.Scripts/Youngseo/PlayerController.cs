@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         else animator.SetBool("Walk", false);
         PlayerRotate();
 
+        if (hp <= 0) PlayerDie();
+
         if (Input.GetKeyDown(KeyCode.X)) Hit();
     }
 
@@ -63,6 +65,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void PlayerDie()
+    {
+        hp = 0;
+        UpdateHpText();
+        animator.SetTrigger("Die"); 
+    }
+
+    public void PlayerDieEvent()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void Hit()
     {
         StopCoroutine(Damaged());
@@ -71,11 +85,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Damaged()
     {
-        hp -= 1;
+        hp -= 5;
         UpdateHpText();
-        spriteRenderer.color = Color.red;
+        animator.SetBool("Hit", true);
+        Debug.Log(spriteRenderer.color);
         yield return new WaitForSecondsRealtime(0.3f);
-        spriteRenderer.color = Color.white;
+        animator.SetBool("Hit", false);
+        Debug.Log(spriteRenderer.color);
     }
 
     public void UpdateHpText()
