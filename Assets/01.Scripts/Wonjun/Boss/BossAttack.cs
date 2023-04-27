@@ -13,6 +13,10 @@ public class BossAttack : MonoBehaviour
     [SerializeField]
     private EnemySO bossSO;
     private Animator _anim;
+    [SerializeField]
+    private BossHpBar _bossHpBar =null;
+    public float time;
+    public float _damage = 0.04f;
 
     private void Awake()
     {
@@ -20,8 +24,21 @@ public class BossAttack : MonoBehaviour
     }
     private void Start()
     {
+       
+        StartCoroutine(HpFill());
         InvokeRepeating("SpawnBoss", 5.5f, spawnInterval);
         _bossHp = bossSO.hp;
+    }
+
+    private IEnumerator HpFill()
+    {
+        time = 0;
+        while (time < 2f)
+        {
+            _bossHpBar.HpGaugeNormal(time / 2f);
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private void Update()
@@ -29,10 +46,13 @@ public class BossAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             _bossHp -= 10f;
+            _bossHpBar.HpGaugeNormal((_bossHp / _bossHp)-_damage);
+            _damage += 0.033f;
             Debug.Log(_bossHp);
         }
         else if (_bossHp <= 0)
         {
+            _bossHpBar.HpGaugeNormal(0);
             _anim.SetTrigger("Dead");
         }
     }
