@@ -20,8 +20,11 @@ public class UISetting : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            _settingdic.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
-            Debug.Log(_settingdic[transform.GetChild(i).name]);
+            if(transform.GetChild(i).TryGetComponent<Button>(out Button button))
+            {
+                _settingdic.Add(transform.GetChild(i).name, transform.GetChild(i).gameObject);
+                Debug.Log(_settingdic[transform.GetChild(i).name]);
+            }
         }
     }
 

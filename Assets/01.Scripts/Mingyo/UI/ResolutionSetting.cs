@@ -44,15 +44,6 @@ public class ResolutionSetting : MonoBehaviour
 
     void InitUI()
     {
-        //for (int i = 0; i < Screen.resolutions.Length; i++)
-        //{
-        //    if (Screen.resolutions[i].refreshRate == 59 || Screen.resolutions[i].refreshRate == 60)
-        //    {
-        //        resolutionsList.Add(Screen.resolutions[i]);
-        //    }
-        //}
-
-        //resolutionsList.Reverse();
 
         for(int i = 0; i < 15; i++)
         {
@@ -65,7 +56,6 @@ public class ResolutionSetting : MonoBehaviour
         _resolutionDropDown.options.Clear();
 
         int optionNum = 0;
-
         foreach (Resolution item in resolutionsList)
         {
             TMP_Dropdown.OptionData optionData = new TMP_Dropdown.OptionData();
