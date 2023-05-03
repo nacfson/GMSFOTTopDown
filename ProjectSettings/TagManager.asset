@@ -49,6 +49,9 @@ TagManager:
   - name: Ground
     uniqueID: 1343479015
     locked: 0
+  - name: Agent
+    uniqueID: 1201036609
+    locked: 0
   - name: Wall
     uniqueID: 2400681093
     locked: 0
@@ -57,7 +60,4 @@ TagManager:
     locked: 0
   - name: Gate
     uniqueID: 2406399199
-    locked: 0
-  - name: Agent
-    uniqueID: 1201036609
     locked: 0
