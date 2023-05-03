@@ -13,33 +13,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float yLimit;
     [SerializeField] Image HP;
     [SerializeField] TextMeshProUGUI HpText;
-    [SerializeField] PlayerSO _playerSO;
-    GunRotate gunRotate;
+    [SerializeField] PlayerSO playerSO;
     Animator animator;
-    SpriteRenderer spriteRenderer;
+    PlayerGunRotate gunRotate;
 
     private void Awake()
     {
         cam = Camera.main;
-        speed = _playerSO.speed;
-        hp = _playerSO.hp;
+        speed = playerSO.speed;
+        hp = playerSO.hp;
         animator = GetComponent<Animator>();
-        gunRotate = FindObjectOfType<GunRotate>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        gunRotate = transform.Find("Gun").GetComponent<PlayerGunRotate>();
     }
+
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
 
-        if (x != 0 || y != 0) animator.SetBool("Walk", true);
-        else animator.SetBool("Walk", false);
+        transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
         PlayerRotate();
 
-        if (hp <= 0) PlayerDie();
-
-        if (Input.GetKeyDown(KeyCode.X)) Hit();
+        if (Input.GetKeyDown(KeyCode.X)) Hit(5);
     }
 
     private void LateUpdate()
@@ -56,47 +51,49 @@ public class PlayerController : MonoBehaviour
         if (x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            gunRotate.Flipreverse();
+            gunRotate.Flip(transform.localScale.x);
         }
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
-            gunRotate.Flip();
+            gunRotate.Flip(transform.localScale.x);
         }
     }
 
-    void PlayerDie()
+    public void Hit(int damage)
     {
-        hp = 0;
+        hp -= damage;
         UpdateHpText();
-        animator.SetTrigger("Die"); 
-    }
+        if (hp <= 0) PlayerDie();
 
-    public void PlayerDieEvent()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void Hit()
-    {
         StopCoroutine(Damaged());
         StartCoroutine(Damaged());
     }
 
     IEnumerator Damaged()
     {
-        hp -= 5;
-        UpdateHpText();
+        speed = 0;
         animator.SetBool("Hit", true);
-        Debug.Log(spriteRenderer.color);
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(0.2f);
+        if (hp > 0) speed = playerSO.speed;
         animator.SetBool("Hit", false);
-        Debug.Log(spriteRenderer.color);
     }
 
     public void UpdateHpText()
     {
         HP.fillAmount = (float)hp / 100;
         HpText.text = hp.ToString() + "%";
+    }
+
+    void PlayerDie()
+    {
+        hp = 0;
+        UpdateHpText();
+        animator.SetTrigger("Die");
+    }
+
+    public void PlayerDieEvent()
+    {
+        gameObject.SetActive(false);
     }
 }

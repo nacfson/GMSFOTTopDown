@@ -5,12 +5,10 @@ using UnityEngine;
 public class PlayerTransformation : MonoBehaviour
 {
     bool Form = false;
-    SpriteRenderer spriteRenderer;
     PlayerController playerController;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         playerController = GetComponent<PlayerController>();
     }
 
@@ -30,12 +28,12 @@ public class PlayerTransformation : MonoBehaviour
     {
         if (!Form)
         {
-            spriteRenderer.color = Color.red;
+            
             Form = true;
         }
         else
         {
-            spriteRenderer.color = Color.white;
+            
             Form = false;
         }
     }

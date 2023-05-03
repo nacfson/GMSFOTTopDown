@@ -402,9 +402,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256335211}
-  - component: {fileID: 256335212}
   m_Layer: 3
-  m_Name: FIrePos
+  m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -425,21 +424,6 @@ Transform:
   m_Father: {fileID: 1105343018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &256335212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256335210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e8da5f40b76eb49a6b4e492d20f2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 1342603487345933284, guid: 6fc98a4121443e541a1f2d46483fa801, type: 3}
-  _playerSO: {fileID: 11400000, guid: bbbbffc138f7ece449316a06eae4ba78, type: 2}
-  shootDelay: 0
 --- !u!1 &371494205
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPrefab: {fileID: 8732609835580417634, guid: 3e20d5de09d1e454f86d646bd9d068fe, type: 3}
-  delayTime: 1.5
 --- !u!4 &371494207
 Transform:
   m_ObjectHideFlags: 0
@@ -746,6 +729,7 @@ GameObject:
   - component: {fileID: 1054188710}
   - component: {fileID: 1054188709}
   - component: {fileID: 1054188711}
+  - component: {fileID: 1054188716}
   - component: {fileID: 1054188712}
   - component: {fileID: 1054188714}
   - component: {fileID: 1054188708}
@@ -890,7 +874,7 @@ MonoBehaviour:
   yLimit: 4.51
   HP: {fileID: 1872857262}
   HpText: {fileID: 256033205}
-  _playerSO: {fileID: 11400000, guid: bbbbffc138f7ece449316a06eae4ba78, type: 2}
+  playerSO: {fileID: 11400000, guid: bbbbffc138f7ece449316a06eae4ba78, type: 2}
 --- !u!114 &1054188712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +922,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1054188716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054188706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e8da5f40b76eb49a6b4e492d20f2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 1342603487345933284, guid: 6fc98a4121443e541a1f2d46483fa801, type: 3}
+  playerSO: {fileID: 11400000, guid: bbbbffc138f7ece449316a06eae4ba78, type: 2}
+  shootDelay: 0
 --- !u!1 &1105343017
 GameObject:
   m_ObjectHideFlags: 0

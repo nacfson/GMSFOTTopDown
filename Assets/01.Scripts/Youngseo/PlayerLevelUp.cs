@@ -23,9 +23,9 @@ public class PlayerLevelUp : MonoBehaviour
         _Level.text = "Lv. 1";
     }
 
-    public void AddExp()
+    public void AddExp(int point)
     {
-        Exp += 5;
+        Exp += point;
         EXP.fillAmount = Exp / ExpLimit;
         LevelUp();
     }
