@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunRotate : MonoBehaviour
+public class PlayerGunRotate : MonoBehaviour
 {
     private Camera cam;
 
@@ -13,10 +13,10 @@ public class GunRotate : MonoBehaviour
 
     private void Update()
     {
-        gunRotate();
+        GunRotate();
     }
 
-    private void gunRotate()
+    private void GunRotate()
     {
         float x = cam.ScreenToWorldPoint(Input.mousePosition).x;
         float y = cam.ScreenToWorldPoint(Input.mousePosition).y;
@@ -24,12 +24,9 @@ public class GunRotate : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, z);
     }
 
-    public void Flipreverse()
+    public void Flip(float flip)
     {
-        transform.localScale = new Vector3(-1, -1, 1);
-    }
-    public void Flip()
-    {
-        transform.localScale = new Vector3(1, 1, 1);
+        if(flip == -1) transform.localScale = new Vector3(-1, -1, 1);
+        else transform.localScale = new Vector3(1, 1, 1);
     }
 }

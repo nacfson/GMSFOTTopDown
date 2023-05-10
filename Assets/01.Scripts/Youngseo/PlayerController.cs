@@ -1,37 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     Camera cam;
     float speed;
+    public int hp;
     [SerializeField] float xLimit;
     [SerializeField] float yLimit;
-    [SerializeField] PlayerSO _playerSO;
-    GunRotate gunRotate;
+    [SerializeField] Image HP;
+    [SerializeField] TextMeshProUGUI HpText;
+    [SerializeField] PlayerSO playerSO;
     Animator animator;
-    SpriteRenderer spriteRenderer;
+    PlayerGunRotate gunRotate;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
         cam = Camera.main;
-        speed = _playerSO.speed;
-        gunRotate = FindObjectOfType<GunRotate>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        speed = playerSO.speed;
+        hp = playerSO.hp;
+        animator = GetComponent<Animator>();
+        gunRotate = transform.Find("Gun").GetComponent<PlayerGunRotate>();
     }
+
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
 
-        if (x != 0 || y != 0) animator.SetBool("Walk", true);
-        else animator.SetBool("Walk", false);
+        transform.position += new Vector3(x, y).normalized * Time.deltaTime * speed;
         PlayerRotate();
 
-        if (Input.GetKeyDown(KeyCode.X)) Hit();
+        if (Input.GetKeyDown(KeyCode.X)) Hit(5);
     }
 
     private void LateUpdate()
@@ -48,25 +51,49 @@ public class PlayerController : MonoBehaviour
         if (x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            gunRotate.Flipreverse();
+            gunRotate.Flip(transform.localScale.x);
         }
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
-            gunRotate.Flip();
+            gunRotate.Flip(transform.localScale.x);
         }
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
+        hp -= damage;
+        UpdateHpText();
+        if (hp <= 0) PlayerDie();
+
         StopCoroutine(Damaged());
         StartCoroutine(Damaged());
     }
 
     IEnumerator Damaged()
     {
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSecondsRealtime(0.3f);
-        spriteRenderer.color = Color.white;
+        speed = 0;
+        animator.SetBool("Hit", true);
+        yield return new WaitForSecondsRealtime(0.2f);
+        if (hp > 0) speed = playerSO.speed;
+        animator.SetBool("Hit", false);
+    }
+
+    public void UpdateHpText()
+    {
+        HP.fillAmount = (float)hp / 100;
+        HpText.text = hp.ToString() + "%";
+    }
+
+    void PlayerDie()
+    {
+        hp = 0;
+        UpdateHpText();
+        animator.SetTrigger("Die");
+    }
+
+    public void PlayerDieEvent()
+    {
+        gameObject.SetActive(false);
     }
 }

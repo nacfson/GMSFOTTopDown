@@ -17,3 +17,4 @@ MonoBehaviour:
   reload: 0
   bulletSpeed: 25
   shootDelay: 0.5
+  hp: 100

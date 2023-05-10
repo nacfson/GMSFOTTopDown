@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] GameObject EnemyPrefab;
-    public float delayTime = 3f;
+    float delayTime = 3f;
 
     void Start()
     {
         StartCoroutine(GenrateEnemy());
     }
+
     IEnumerator GenrateEnemy()
     {
         while (true)

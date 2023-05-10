@@ -5,12 +5,18 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] GameObject BulletPrefab;
-    [SerializeField] PlayerSO _playerSO;
+    [SerializeField] PlayerSO playerSO;
+    Transform firePosTrm;
     public float shootDelay;
+
+    private void Awake()
+    {
+        firePosTrm = transform.Find("Gun/FirePos").GetComponent<Transform>();
+    }
 
     private void Start()
     {
-        shootDelay = _playerSO.shootDelay;
+        shootDelay = playerSO.shootDelay;
         StartCoroutine(ShootBullet());
     }
 
@@ -20,8 +26,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                GameObject obj = Instantiate(BulletPrefab, transform.position, transform.rotation);
-                obj.transform.SetParent(null);
+                Instantiate(BulletPrefab, firePosTrm.position, firePosTrm.rotation);
                 yield return new WaitForSeconds(shootDelay);
             }
             yield return 0;
