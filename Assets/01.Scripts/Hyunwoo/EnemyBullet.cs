@@ -8,9 +8,6 @@ public class EnemyBullet : MonoBehaviour
     public Transform player;
     public float speed = 3f;
     public Vector2 way;
-    public bool inChase = false;
-    public bool isAttack = true;
-    public bool getKey = true;
     TestPlayerController testplayercontroller;
 
     private void Awake()
@@ -20,26 +17,17 @@ public class EnemyBullet : MonoBehaviour
     }
     void Start()
     {
-
         way = player.position - transform.position;
         way = way.normalized;
-
-        
     }
     void Update()
     {
         transform.Translate(way * speed * Time.deltaTime);
-
-        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public float Damage(float hp)
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-            testplayercontroller.hp -= enemySO.attack;
-            testplayercontroller.Damage();
-        }
+        hp -= enemySO.attack;
+        return hp;
     }
 }

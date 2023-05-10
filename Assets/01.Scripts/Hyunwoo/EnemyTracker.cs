@@ -70,8 +70,7 @@ public class EnemyTracker : EnemyParent
     {
         SoundManager.Instance.SFXPlay(SFX);
         onAttack = true;
-        Invoke("ReturnRun", 0.8f);
-
+        StartCoroutine(Return(0.8f));
     }
     public void ReturnRun()
     {
@@ -103,6 +102,14 @@ public class EnemyTracker : EnemyParent
     protected override IEnumerator Damaged()
     {
         return base.Damaged();
+    }
+
+    IEnumerator Return( float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        onAttack = false;
     }
 }
 

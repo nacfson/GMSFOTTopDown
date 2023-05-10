@@ -14,15 +14,11 @@ public abstract class EnemyParent : MonoBehaviour
     protected float speed;
     protected float range;
     protected float attackDelay = 1f;
-    protected bool color = false;
     protected SpriteRenderer sprite;
     protected Animator animator;
     protected TestPlayerController testplayercontroller;
     [SerializeField]
     protected AudioSource SFX;
-    protected float MaxG;
-    protected float MinG;
-    protected float MinB;
 
     protected bool onAttack = false; // 공격 중인지 판단하는 변수
     protected bool inChase = false; // 감지 범위에 들어왔는지 판단하는 변수
@@ -66,6 +62,7 @@ public abstract class EnemyParent : MonoBehaviour
     }
     protected virtual IEnumerator Damaged()
     {
+        transform.GetChild(0).gameObject.GetComponent<EnemyHPBar>().Damage();
         sprite.color = new Color(255, 0, 0, 255);
         yield return new WaitForSeconds(0.3f);
         sprite.color = new Color(255, 255, 255, 255);

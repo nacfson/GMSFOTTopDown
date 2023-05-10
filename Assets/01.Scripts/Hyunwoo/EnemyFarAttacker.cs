@@ -69,7 +69,7 @@ public class EnemyFarAttacker : EnemyParent
     {
         while (true)
         {
-            if(dying == false)
+            if (dying == false || player != null)
             {
                 float distance = Vector2.Distance(transform.position, player.position);
                 if (distance <= 5f)

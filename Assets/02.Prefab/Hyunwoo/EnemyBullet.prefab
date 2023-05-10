@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1850983989615733483}
   m_Layer: 0
   m_Name: EnemyBullet
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,12 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9557ebc9889a9044f98da42a10ff1fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 596b65223dddab545a59b1282528f0a2, type: 2}
   player: {fileID: 0}
   speed: 3
   way: {x: 0, y: 0}
-  inChase: 0
-  isAttack: 1
-  getKey: 1
 --- !u!58 &7329432896430450018
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +113,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
